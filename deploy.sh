@@ -14,7 +14,7 @@ fi
 echo "✓ Vercel CLI ready"
 echo ""
 echo "🚀 Deploying..."
-vercel --prod
+vercel ./public --prod --yes
 
 echo ""
 echo "✅ Done! Your portfolio is live."
