@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "outputDirectory": "public",
   "routes": [
     {
       "src": "/hero.mp4",
@@ -8,15 +8,15 @@
         "Accept-Ranges": "bytes",
         "Content-Type": "video/mp4"
       },
-      "dest": "/public/hero.mp4"
+      "dest": "/hero.mp4"
     },
     {
       "src": "/favicon.png",
-      "dest": "/public/favicon.png"
+      "dest": "/favicon.png"
     },
     {
       "src": "/(.*)",
-      "dest": "/public/index.html"
+      "dest": "/index.html"
     }
   ]
 }
