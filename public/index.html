@@ -1,843 +1,2464 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Kunwar Sadanand</title>
-<meta name="description" content="Curious Mind. Creative Soul. Competitive Spirit"/>
-<link rel="icon" type="image/png" href="/favicon.png"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#04040a;
-  --ink:#f0eef8;
-  --ink2:rgba(240,238,248,0.55);
-  --ink3:rgba(240,238,248,0.28);
-  --violet:#7b68ee;
-  --violet2:#a99ef7;
-  --violet3:rgba(123,104,238,0.15);
-  --cyan:#00d4ff;
-  --green:#00e87a;
-  --amber:#ffb347;
-  --mono:'JetBrains Mono',monospace;
-  --sans:'Inter',sans-serif;
-}
-html{scroll-behavior:auto;background:var(--bg)}
-body{font-family:var(--sans);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
-a{color:inherit;text-decoration:none}
-img,video{display:block}
-::selection{background:rgba(123,104,238,0.35);color:#fff}
-::-webkit-scrollbar{width:2px}
-::-webkit-scrollbar-thumb{background:rgba(123,104,238,0.4)}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Kunwar Sadanand | Curious Mind. Creative Soul. Competitive Spirit</title>
+  <meta name="description" content="Welcome to my digital home—a place where technology meets creativity. Explore the products I've built, the ideas I've brought to life, the artwork that inspires me, and the passions that keep me moving, both behind the screen and beyond it." />
+  <meta property="og:title" content="Kunwar Sadanand | Curious Mind. Creative Soul. Competitive Spirit" />
+  <meta property="og:description" content="Welcome to my digital home—a place where technology meets creativity. Explore the products I've built, the ideas I've brought to life, the artwork that inspires me, and the passions that keep me moving, both behind the screen and beyond it." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://kunwar-portfolio.vercel.app/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Kunwar Sadanand | Curious Mind. Creative Soul. Competitive Spirit" />
+  <meta name="twitter:description" content="Welcome to my digital home—a place where technology meets creativity. Explore the products I've built, the ideas I've brought to life, the artwork that inspires me, and the passions that keep me moving, both behind the screen and beyond it." />
+  <meta name="twitter:image" content="https://kunwar-portfolio.vercel.app/og-image.png" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
 
-/* ─── CURSOR ─── */
-#csr{position:fixed;z-index:9999;pointer-events:none;top:0;left:0}
-#csr-dot{position:absolute;width:6px;height:6px;background:white;border-radius:50%;transform:translate(-50%,-50%)}
-#csr-trail{position:absolute;width:32px;height:32px;border:1px solid rgba(255,255,255,0.35);border-radius:50%;transform:translate(-50%,-50%);transition:transform 0.08s,width 0.25s,height 0.25s,border-color 0.25s}
-body:has(a:hover) #csr-trail{width:52px;height:52px;border-color:rgba(123,104,238,0.7)}
-body:has(button:hover) #csr-trail{width:52px;height:52px;border-color:rgba(0,212,255,0.7)}
+    :root {
+      --bg: #04040a;
+      --ink: #f0eef8;
+      --ink2: rgba(240, 238, 248, 0.55);
+      --ink3: rgba(240, 238, 248, 0.28);
+      --violet: #7b68ee;
+      --violet2: #a99ef7;
+      --violet3: rgba(123, 104, 238, 0.15);
+      --cyan: #00d4ff;
+      --green: #00e87a;
+      --amber: #ffb347;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', sans-serif;
+    }
 
-/* ─── NAV ─── */
-#nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;transition:background 0.4s,border-color 0.4s;border-bottom:1px solid transparent}
-#nav.scrolled{background:rgba(4,4,10,0.88);backdrop-filter:blur(20px);border-color:rgba(255,255,255,0.06)}
-.nav-brand{font-size:14px;font-weight:700;letter-spacing:-0.3px;display:flex;align-items:center;gap:8px}
-.nav-brand .dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green);animation:breathe 2s ease-in-out infinite}
-@keyframes breathe{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.75)}}
-.nav-links{display:flex;gap:36px}
-.nav-links a{font-size:12px;font-weight:500;letter-spacing:0.8px;text-transform:uppercase;color:var(--ink3);transition:color 0.2s}
-.nav-links a:hover{color:var(--ink)}
-.nav-hire{font-size:12px;font-weight:600;padding:8px 20px;border:1px solid rgba(123,104,238,0.5);border-radius:100px;color:var(--violet2);transition:all 0.25s;letter-spacing:0.3px}
-.nav-hire:hover{background:var(--violet);border-color:var(--violet);color:#fff}
+    html {
+      scroll-behavior: auto;
+      background: var(--bg)
+    }
 
-/* ─── HERO ─── */
-#hero{position:relative;height:100vh;display:flex;align-items:flex-end;overflow:hidden}
-#hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
-#hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(4,4,10,0.2) 0%,rgba(4,4,10,0.15) 40%,rgba(4,4,10,0.7) 75%,rgba(4,4,10,1) 100%)}
-#hero-overlay2{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(123,104,238,0.08) 0%,transparent 60%)}
+    body {
+      font-family: var(--sans);
+      color: var(--ink);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      cursor: none
+    }
 
-/* progress bar */
-#scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--violet),var(--cyan));z-index:300;width:0%;transition:width 0.1s linear;transform-origin:left}
+    a {
+      color: inherit;
+      text-decoration: none
+    }
 
-/* ─── HERO TEXT ─── */
-#hero-content{position:relative;z-index:10;padding:0 64px 80px;width:100%}
-.hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--violet2);margin-bottom:20px;opacity:0;animation:riseUp 0.8s 0.3s var(--ease,cubic-bezier(0.16,1,0.3,1)) forwards}
-.hero-title{font-size:clamp(56px,8.5vw,120px);font-weight:900;letter-spacing:-4px;line-height:0.92;margin-bottom:32px;overflow:hidden}
-.hero-title .word{display:inline-block;overflow:hidden}
-.hero-title .char{display:inline-block;transform:translateY(110%);animation:charUp 0.7s var(--ease,cubic-bezier(0.16,1,0.3,1)) forwards}
-.hero-sub{font-size:clamp(15px,1.8vw,20px);font-weight:300;color:var(--ink2);max-width:560px;line-height:1.7;margin-bottom:40px;opacity:0;animation:riseUp 0.9s 1.2s var(--ease,cubic-bezier(0.16,1,0.3,1)) forwards}
-.hero-sub strong{color:var(--ink);font-weight:500}
-.hero-actions{display:flex;gap:14px;align-items:center;opacity:0;animation:riseUp 0.8s 1.5s var(--ease,cubic-bezier(0.16,1,0.3,1)) forwards}
-.btn-main{display:inline-flex;align-items:center;gap:9px;padding:14px 30px;background:var(--violet);color:#fff;border-radius:10px;font-size:14px;font-weight:600;transition:all 0.3s;box-shadow:0 0 0 0 rgba(123,104,238,0.4)}
-.btn-main:hover{background:#8b7af2;transform:translateY(-2px);box-shadow:0 10px 36px rgba(123,104,238,0.45)}
-.btn-ghost{display:inline-flex;align-items:center;gap:9px;padding:14px 30px;background:rgba(255,255,255,0.06);color:var(--ink);border:1px solid rgba(255,255,255,0.12);border-radius:10px;font-size:14px;font-weight:500;transition:all 0.3s;backdrop-filter:blur(8px)}
-.btn-ghost:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.22);transform:translateY(-2px)}
-.hero-stats-row{position:absolute;right:64px;bottom:80px;display:flex;flex-direction:column;gap:20px;text-align:right;opacity:0;animation:riseUp 0.9s 1.6s var(--ease,cubic-bezier(0.16,1,0.3,1)) forwards;z-index:10}
-.hero-stat-item .num{font-size:32px;font-weight:800;letter-spacing:-1.5px;font-family:var(--mono);color:var(--ink)}
-.hero-stat-item .num em{color:var(--violet2);font-style:normal}
-.hero-stat-item .lbl{font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink3)}
-@keyframes riseUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes charUp{to{transform:translateY(0)}}
+    img,
+    video {
+      display: block
+    }
 
-/* scroll hint */
-.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:10;opacity:0;animation:riseUp 1s 2s ease forwards}
-.scroll-hint span{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink3)}
-.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--ink3),transparent);position:relative;overflow:hidden}
-.scroll-line::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--ink);animation:scrollDown 1.8s 2.2s ease-in-out infinite}
-@keyframes scrollDown{0%{top:-100%}100%{top:200%}}
+    ::selection {
+      background: rgba(123, 104, 238, 0.35);
+      color: #fff
+    }
 
-/* ─── MARQUEE ─── */
-.marquee-wrap{overflow:hidden;border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);padding:14px 0;background:rgba(123,104,238,0.04)}
-.marquee-track{display:flex;gap:0;width:max-content;animation:marqueeRun 28s linear infinite}
-.marquee-track:hover{animation-play-state:paused}
-.marquee-item{display:inline-flex;align-items:center;gap:24px;padding:0 40px;white-space:nowrap;font-family:var(--mono);font-size:12px;color:var(--ink3)}
-.marquee-item .code{color:var(--violet2)}
-.marquee-item .sep{color:rgba(123,104,238,0.4);font-size:18px;line-height:1}
-@keyframes marqueeRun{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    ::-webkit-scrollbar {
+      width: 2px
+    }
 
-/* ─── SECTION STRUCTURE ─── */
-.section{padding:120px 64px;max-width:1280px;margin:0 auto}
-.s-eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--violet2);margin-bottom:16px}
-.s-title{font-size:clamp(36px,5.5vw,64px);font-weight:800;letter-spacing:-2.5px;line-height:1.0;margin-bottom:20px;color:var(--ink)}
-.s-sub{font-size:16px;color:var(--ink2);max-width:500px;line-height:1.75;margin-bottom:72px}
-.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06) 30%,rgba(255,255,255,0.06) 70%,transparent)}
+    ::-webkit-scrollbar-thumb {
+      background: rgba(123, 104, 238, 0.4)
+    }
 
-/* ─── ABOUT / SPLIT ─── */
-.about-split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-.about-left{}
-.big-statement{font-size:clamp(22px,3vw,36px);font-weight:700;letter-spacing:-1.5px;line-height:1.25;color:var(--ink);margin-bottom:32px}
-.big-statement em{color:var(--violet2);font-style:normal}
-.body-text{font-size:15px;color:var(--ink2);line-height:1.85;margin-bottom:18px}
-.body-text strong{color:var(--ink);font-weight:500}
-.award-row{display:flex;align-items:center;gap:12px;padding:14px 18px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;margin-bottom:10px;transition:border-color 0.2s}
-.award-row:hover{border-color:rgba(123,104,238,0.3)}
-.award-icon{font-size:20px}
-.award-text{font-size:13px;color:var(--ink2)}.award-text strong{color:var(--ink);font-weight:600}
+    /* ─── CURSOR ─── */
+    #csr {
+      position: fixed;
+      z-index: 9999;
+      pointer-events: none;
+      top: 0;
+      left: 0
+    }
 
-/* career steps */
-.career-path{display:flex;flex-direction:column}
-.cp-item{display:flex;gap:24px;padding-bottom:44px;position:relative}
-.cp-line{display:flex;flex-direction:column;align-items:center;width:18px;flex-shrink:0}
-.cp-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--violet);background:var(--bg);flex-shrink:0;margin-top:3px;transition:all 0.3s}
-.cp-dot.live{background:var(--violet2);box-shadow:0 0 0 4px rgba(123,104,238,0.2),0 0 16px rgba(123,104,238,0.5);animation:liveDot 2s ease-in-out infinite}
-@keyframes liveDot{0%,100%{box-shadow:0 0 0 4px rgba(123,104,238,0.2),0 0 16px rgba(123,104,238,0.5)}50%{box-shadow:0 0 0 8px rgba(123,104,238,0.1),0 0 32px rgba(123,104,238,0.3)}}
-.cp-connector{width:1px;flex:1;background:linear-gradient(to bottom,rgba(123,104,238,0.6),rgba(123,104,238,0.05));margin:6px 0;min-height:24px}
-.cp-body{flex:1}
-.cp-co{font-size:19px;font-weight:700;letter-spacing:-0.5px;color:var(--ink)}
-.cp-period{font-size:11px;color:var(--ink3);font-family:var(--mono);margin:4px 0 8px}
-.cp-desc{font-size:13px;color:var(--ink2);line-height:1.65}
-.cp-badge{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:11px;font-weight:600;color:var(--green);border:1px solid rgba(0,232,122,0.2);background:rgba(0,232,122,0.06);padding:3px 10px;border-radius:100px}
+    #csr-dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      transform: translate(-50%, -50%)
+    }
 
-/* ─── EXPERIENCE CARDS ─── */
-.exp-stack{display:flex;flex-direction:column;gap:20px}
-.exp-card{background:rgba(255,255,255,0.018);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:36px;transition:all 0.35s cubic-bezier(0.16,1,0.3,1);position:relative;overflow:hidden;cursor:default}
-.exp-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--violet),var(--cyan));opacity:0;transition:opacity 0.35s}
-.exp-card:hover{border-color:rgba(123,104,238,0.25);background:rgba(123,104,238,0.04);transform:translateX(6px)}
-.exp-card:hover::before{opacity:1}
-.exp-head{display:flex;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap}
-.exp-co-block{display:flex;gap:14px;align-items:flex-start}
-.exp-logo{width:44px;height:44px;border-radius:12px;background:rgba(123,104,238,0.12);border:1px solid rgba(123,104,238,0.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;font-family:var(--mono);color:var(--violet2);flex-shrink:0}
-.exp-co{font-size:18px;font-weight:700;letter-spacing:-0.5px}
-.exp-role{font-size:12px;color:var(--ink2);margin-top:2px}
-.exp-period-badge{font-family:var(--mono);font-size:11px;font-weight:600;padding:5px 12px;background:rgba(123,104,238,0.08);border:1px solid rgba(123,104,238,0.18);border-radius:6px;color:var(--violet2);white-space:nowrap;align-self:flex-start}
-.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
-.tag{font-size:11px;font-weight:500;padding:3px 10px;border-radius:100px;border:1px solid rgba(255,255,255,0.07);color:var(--ink3);transition:all 0.2s}
-.tag.hl{color:var(--violet2);border-color:rgba(123,104,238,0.25);background:rgba(123,104,238,0.07)}
-.tag:hover{border-color:rgba(255,255,255,0.15);color:var(--ink2)}
-.achievements{list-style:none;display:flex;flex-direction:column;gap:10px}
-.achievements li{font-size:14px;color:var(--ink2);padding-left:20px;position:relative;line-height:1.65}
-.achievements li::before{content:'→';position:absolute;left:0;color:var(--violet2);font-size:11px;top:2px}
-.achievements li strong{color:var(--ink);font-weight:500}
-.metrics-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.05)}
-.m-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;background:rgba(123,104,238,0.06);border:1px solid rgba(123,104,238,0.14);font-size:12px}
-.m-pill .v{color:var(--violet2);font-family:var(--mono);font-weight:600;font-size:13px}
-.m-pill .l{color:var(--ink2)}
+    #csr-trail {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s, width 0.25s, height 0.25s, border-color 0.25s
+    }
 
-/* ─── METRICS BAND ─── */
-#metrics-band{padding:80px 64px;border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04);position:relative;overflow:hidden}
-#metrics-band::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(123,104,238,0.05) 0%,transparent 70%)}
-.metrics-row-big{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));max-width:1280px;margin:0 auto;gap:1px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.04);border-radius:16px;overflow:hidden}
-.m-cell{background:var(--bg);padding:40px 28px;text-align:center;transition:background 0.3s;position:relative;overflow:hidden}
-.m-cell::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--violet),var(--cyan));transform:scaleX(0);transition:transform 0.45s cubic-bezier(0.16,1,0.3,1)}
-.m-cell:hover{background:#0a0a14}.m-cell:hover::after{transform:scaleX(1)}
-.m-num{font-size:44px;font-weight:800;font-family:var(--mono);letter-spacing:-2px;line-height:1;color:var(--ink)}
-.m-num em{color:var(--violet2);font-style:normal}
-.m-lbl{font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:1.5px;font-weight:500;margin-top:10px}
+    body:has(a:hover) #csr-trail {
+      width: 52px;
+      height: 52px;
+      border-color: rgba(123, 104, 238, 0.7)
+    }
 
-/* ─── PROJECTS ─── */
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:18px}
-.proj-card{border:1px solid rgba(255,255,255,0.06);border-radius:20px;overflow:hidden;background:rgba(255,255,255,0.018);transition:all 0.4s cubic-bezier(0.16,1,0.3,1);position:relative}
-.proj-card:hover{border-color:rgba(123,104,238,0.28);transform:translateY(-5px);box-shadow:0 28px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(123,104,238,0.12)}
-.proj-visual{height:196px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.proj-visual canvas{position:absolute;inset:0;width:100%;height:100%}
-.proj-emoji{font-size:48px;position:relative;z-index:1;transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);filter:drop-shadow(0 0 20px rgba(123,104,238,0.5))}
-.proj-card:hover .proj-emoji{transform:scale(1.18) rotate(-6deg)}
-.proj-body{padding:24px}
-.proj-name{font-size:16px;font-weight:700;letter-spacing:-0.3px;color:var(--ink);margin-bottom:8px}
-.proj-desc{font-size:13px;color:var(--ink2);line-height:1.65;margin-bottom:16px}
-.proj-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:16px}
-.proj-tag{font-size:10px;font-weight:500;padding:3px 8px;border-radius:4px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);color:var(--ink3);font-family:var(--mono)}
-.proj-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;color:var(--ink3);padding:5px 12px;border:1px solid rgba(255,255,255,0.06);border-radius:8px;background:rgba(255,255,255,0.02);transition:all 0.2s}
-.proj-link:hover{color:var(--ink);border-color:rgba(255,255,255,0.14)}
+    body:has(button:hover) #csr-trail {
+      width: 52px;
+      height: 52px;
+      border-color: rgba(0, 212, 255, 0.7)
+    }
 
-/* ─── HIGHLIGHTS ─── */
-.hl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
-.hl-card{background:rgba(255,255,255,0.018);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:26px;transition:all 0.3s;position:relative;overflow:hidden}
-.hl-card:hover{border-color:rgba(123,104,238,0.22);transform:translateY(-3px);background:rgba(123,104,238,0.04)}
-.hl-num{font-family:var(--mono);font-size:11px;color:var(--violet2);margin-bottom:12px;opacity:0.55}
-.hl-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:10px}
-.hl-desc{font-size:13px;color:var(--ink2);line-height:1.75}
-.hl-desc code{font-family:var(--mono);font-size:11px;color:var(--violet2);background:rgba(123,104,238,0.1);padding:1px 6px;border-radius:4px}
-.hl-badge{display:inline-block;margin-top:13px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;padding:3px 10px;border-radius:4px}
+    /* ─── NAV ─── */
+    #nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      padding: 0 48px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s, border-color 0.4s;
+      border-bottom: 1px solid transparent
+    }
 
-/* ─── EXPERTISE ─── */
-.exp-grid10{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:12px}
-.skill-card{background:rgba(255,255,255,0.018);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:22px;transition:all 0.28s;cursor:default;position:relative;overflow:hidden}
-.skill-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(123,104,238,0.1) 0%,transparent 60%);opacity:0;transition:opacity 0.3s}
-.skill-card:hover::before{opacity:1}
-.skill-card:hover{border-color:rgba(123,104,238,0.22);transform:translateY(-2px)}
-.skill-icon{font-size:22px;margin-bottom:12px;display:block}
-.skill-name{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px}
-.skill-items{font-size:12px;color:var(--ink3);line-height:1.85}
+    #nav.scrolled {
+      background: rgba(4, 4, 10, 0.88);
+      backdrop-filter: blur(20px);
+      border-color: rgba(255, 255, 255, 0.06)
+    }
 
-/* ─── TECH STRIP ─── */
-.tech-flex{display:flex;flex-wrap:wrap;gap:9px}
-.tech-pill{display:flex;align-items:center;gap:7px;padding:7px 15px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:9px;font-size:12px;font-weight:500;color:var(--ink2);transition:all 0.22s;cursor:default}
-.tech-pill:hover{border-color:rgba(255,255,255,0.13);color:var(--ink);background:rgba(255,255,255,0.04);transform:translateY(-2px)}
-.tech-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.tech-sec{font-size:10px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink3);width:100%;margin:22px 0 10px}
+    .nav-brand {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
 
-/* ─── CONTACT ─── */
-.contact-split{display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;align-items:start}
-.c-links{display:flex;flex-direction:column;gap:11px;margin-top:8px}
-.c-link{display:flex;align-items:center;gap:14px;padding:16px 20px;background:rgba(255,255,255,0.018);border:1px solid rgba(255,255,255,0.06);border-radius:12px;transition:all 0.28s;color:var(--ink)}
-.c-link:hover{border-color:rgba(123,104,238,0.3);background:rgba(123,104,238,0.05);transform:translateX(6px)}
-.c-icon{width:38px;height:38px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.04);border-radius:10px;font-size:17px;flex-shrink:0}
-.c-label{font-size:10px;color:var(--ink3);text-transform:uppercase;letter-spacing:1.2px}
-.c-val{font-size:14px;font-weight:500;margin-top:1px}
-.c-arrow{color:var(--ink3);margin-left:auto;transition:all 0.25s}
-.c-link:hover .c-arrow{color:var(--violet2);transform:translateX(3px)}
+    .nav-brand .dot {
+      width: 7px;
+      height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--green);
+      animation: breathe 2s ease-in-out infinite
+    }
 
-/* ─── TESTIMONIALS ─── */
-.test-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
-.test-card{background:rgba(255,255,255,0.018);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:26px;transition:all 0.25s;position:relative}
-.test-card:hover{border-color:rgba(255,255,255,0.1);background:rgba(255,255,255,0.025)}
-.pending-badge{position:absolute;top:12px;right:12px;font-size:10px;font-weight:600;padding:3px 8px;background:rgba(255,179,71,0.1);border:1px solid rgba(255,179,71,0.2);color:var(--amber);border-radius:4px;text-transform:uppercase}
-.test-q{font-size:32px;color:var(--violet2);opacity:0.22;line-height:1;font-family:Georgia,serif;margin-bottom:6px}
-.test-body{font-size:13px;color:var(--ink2);line-height:1.75;margin-bottom:18px;font-style:italic}
-.test-author{display:flex;align-items:center;gap:10px}
-.test-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--cyan));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
-.test-name{font-size:13px;font-weight:600;color:var(--ink)}
-.test-role{font-size:11px;color:var(--ink3)}
+    @keyframes breathe {
 
-/* ─── FOOTER ─── */
-footer{border-top:1px solid rgba(255,255,255,0.04);padding:36px 64px;display:flex;align-items:center;justify-content:space-between;max-width:1280px;margin:0 auto}
-.footer-l{font-size:13px;color:var(--ink3)}
-.footer-r{font-size:12px;color:var(--ink3)}
-.footer-r em{color:var(--violet2);font-style:normal}
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
 
-/* ─── SCROLL REVEAL ─── */
-.sr{opacity:0;transform:translateY(26px);transition:opacity 0.65s cubic-bezier(0.16,1,0.3,1),transform 0.65s cubic-bezier(0.16,1,0.3,1)}
-.sr.show{opacity:1;transform:translateY(0)}
-.sr-d1{transition-delay:0.06s}.sr-d2{transition-delay:0.12s}.sr-d3{transition-delay:0.18s}
-.sr-d4{transition-delay:0.24s}.sr-d5{transition-delay:0.30s}.sr-d6{transition-delay:0.36s}
+      50% {
+        opacity: 0.5;
+        transform: scale(0.75)
+      }
+    }
 
-/* ─── MOBILE ─── */
-@media(max-width:768px){
-  #nav{padding:0 20px}
-  .nav-links{display:none}
-  #hero-content{padding:0 24px 72px}
-  .hero-stats-row{right:24px;bottom:72px}
-  .section{padding:80px 24px}
-  .about-split,.contact-split{grid-template-columns:1fr;gap:48px}
-  #metrics-band{padding:60px 20px}
-  footer{padding:28px 24px;flex-direction:column;gap:10px;text-align:center}
-  .divider{margin:0 24px}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
-}
-</style>
+    .nav-links {
+      display: flex;
+      gap: 36px
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--ink3);
+      transition: color 0.2s
+    }
+
+    .nav-links a:hover {
+      color: var(--ink)
+    }
+
+    .nav-hire {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 20px;
+      border: 1px solid rgba(123, 104, 238, 0.5);
+      border-radius: 100px;
+      color: var(--violet2);
+      transition: all 0.25s;
+      letter-spacing: 0.3px
+    }
+
+    .nav-hire:hover {
+      background: var(--violet);
+      border-color: var(--violet);
+      color: #fff
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden
+    }
+
+    #hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center
+    }
+
+    #hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(4, 4, 10, 0.2) 0%, rgba(4, 4, 10, 0.15) 40%, rgba(4, 4, 10, 0.7) 75%, rgba(4, 4, 10, 1) 100%)
+    }
+
+    #hero-overlay2 {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(123, 104, 238, 0.08) 0%, transparent 60%)
+    }
+
+    /* progress bar */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--violet), var(--cyan));
+      z-index: 300;
+      width: 0%;
+      transition: width 0.1s linear;
+      transform-origin: left
+    }
+
+    /* ─── HERO TEXT ─── */
+    #hero-content {
+      position: relative;
+      z-index: 10;
+      padding: 0 64px 80px;
+      width: 100%
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--violet2);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: riseUp 0.8s 0.3s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)) forwards
+    }
+
+    .hero-title {
+      font-size: clamp(56px, 8.5vw, 120px);
+      font-weight: 900;
+      letter-spacing: -4px;
+      line-height: 0.92;
+      margin-bottom: 32px;
+      overflow: hidden
+    }
+
+    .hero-title .word {
+      display: inline-block;
+      overflow: hidden
+    }
+
+    .hero-title .char {
+      display: inline-block;
+      transform: translateY(110%);
+      animation: charUp 0.7s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)) forwards
+    }
+
+    .hero-sub {
+      font-size: clamp(15px, 1.8vw, 20px);
+      font-weight: 300;
+      color: var(--ink2);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: riseUp 0.9s 1.2s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)) forwards
+    }
+
+    .hero-sub strong {
+      color: var(--ink);
+      font-weight: 500
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      opacity: 0;
+      animation: riseUp 0.8s 1.5s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)) forwards
+    }
+
+    .btn-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 14px 30px;
+      background: var(--violet);
+      color: #fff;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 0 0 0 rgba(123, 104, 238, 0.4)
+    }
+
+    .btn-main:hover {
+      background: #8b7af2;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 36px rgba(123, 104, 238, 0.45)
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 14px 30px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--ink);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s;
+      backdrop-filter: blur(8px)
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.22);
+      transform: translateY(-2px)
+    }
+
+    .hero-stats-row {
+      position: absolute;
+      right: 64px;
+      bottom: 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-align: right;
+      opacity: 0;
+      animation: riseUp 0.9s 1.6s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
+      z-index: 10
+    }
+
+    .hero-stat-item .num {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      font-family: var(--mono);
+      color: var(--ink)
+    }
+
+    .hero-stat-item .num em {
+      color: var(--violet2);
+      font-style: normal
+    }
+
+    .hero-stat-item .lbl {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--ink3)
+    }
+
+    @keyframes riseUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes charUp {
+      to {
+        transform: translateY(0)
+      }
+    }
+
+    /* scroll hint */
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      z-index: 10;
+      opacity: 0;
+      animation: riseUp 1s 2s ease forwards
+    }
+
+    .scroll-hint span {
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--ink3)
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--ink3), transparent);
+      position: relative;
+      overflow: hidden
+    }
+
+    .scroll-line::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--ink);
+      animation: scrollDown 1.8s 2.2s ease-in-out infinite
+    }
+
+    @keyframes scrollDown {
+      0% {
+        top: -100%
+      }
+
+      100% {
+        top: 200%
+      }
+    }
+
+    /* ─── MARQUEE ─── */
+    .marquee-wrap {
+      overflow: hidden;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 14px 0;
+      background: rgba(123, 104, 238, 0.04)
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      width: max-content;
+      animation: marqueeRun 28s linear infinite
+    }
+
+    .marquee-track:hover {
+      animation-play-state: paused
+    }
+
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 24px;
+      padding: 0 40px;
+      white-space: nowrap;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink3)
+    }
+
+    .marquee-item .code {
+      color: var(--violet2)
+    }
+
+    .marquee-item .sep {
+      color: rgba(123, 104, 238, 0.4);
+      font-size: 18px;
+      line-height: 1
+    }
+
+    @keyframes marqueeRun {
+      0% {
+        transform: translateX(0)
+      }
+
+      100% {
+        transform: translateX(-50%)
+      }
+    }
+
+    /* ─── SECTION STRUCTURE ─── */
+    .section {
+      padding: 120px 64px;
+      max-width: 1280px;
+      margin: 0 auto
+    }
+
+    .s-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--violet2);
+      margin-bottom: 16px
+    }
+
+    .s-title {
+      font-size: clamp(36px, 5.5vw, 64px);
+      font-weight: 800;
+      letter-spacing: -2.5px;
+      line-height: 1.0;
+      margin-bottom: 20px;
+      color: var(--ink)
+    }
+
+    .s-sub {
+      font-size: 16px;
+      color: var(--ink2);
+      max-width: 500px;
+      line-height: 1.75;
+      margin-bottom: 72px
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06) 30%, rgba(255, 255, 255, 0.06) 70%, transparent)
+    }
+
+    /* ─── ABOUT / SPLIT ─── */
+    .about-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start
+    }
+
+    .about-left {}
+
+    .big-statement {
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      line-height: 1.25;
+      color: var(--ink);
+      margin-bottom: 32px
+    }
+
+    .big-statement em {
+      color: var(--violet2);
+      font-style: normal
+    }
+
+    .body-text {
+      font-size: 15px;
+      color: var(--ink2);
+      line-height: 1.85;
+      margin-bottom: 18px
+    }
+
+    .body-text strong {
+      color: var(--ink);
+      font-weight: 500
+    }
+
+    .award-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      transition: border-color 0.2s
+    }
+
+    .award-row:hover {
+      border-color: rgba(123, 104, 238, 0.3)
+    }
+
+    .award-icon {
+      font-size: 20px
+    }
+
+    .award-text {
+      font-size: 13px;
+      color: var(--ink2)
+    }
+
+    .award-text strong {
+      color: var(--ink);
+      font-weight: 600
+    }
+
+    /* career steps */
+    .career-path {
+      display: flex;
+      flex-direction: column
+    }
+
+    .cp-item {
+      display: flex;
+      gap: 24px;
+      padding-bottom: 44px;
+      position: relative
+    }
+
+    .cp-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 18px;
+      flex-shrink: 0
+    }
+
+    .cp-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid var(--violet);
+      background: var(--bg);
+      flex-shrink: 0;
+      margin-top: 3px;
+      transition: all 0.3s
+    }
+
+    .cp-dot.live {
+      background: var(--violet2);
+      box-shadow: 0 0 0 4px rgba(123, 104, 238, 0.2), 0 0 16px rgba(123, 104, 238, 0.5);
+      animation: liveDot 2s ease-in-out infinite
+    }
+
+    @keyframes liveDot {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 4px rgba(123, 104, 238, 0.2), 0 0 16px rgba(123, 104, 238, 0.5)
+      }
+
+      50% {
+        box-shadow: 0 0 0 8px rgba(123, 104, 238, 0.1), 0 0 32px rgba(123, 104, 238, 0.3)
+      }
+    }
+
+    .cp-connector {
+      width: 1px;
+      flex: 1;
+      background: linear-gradient(to bottom, rgba(123, 104, 238, 0.6), rgba(123, 104, 238, 0.05));
+      margin: 6px 0;
+      min-height: 24px
+    }
+
+    .cp-body {
+      flex: 1
+    }
+
+    .cp-co {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--ink)
+    }
+
+    .cp-period {
+      font-size: 11px;
+      color: var(--ink3);
+      font-family: var(--mono);
+      margin: 4px 0 8px
+    }
+
+    .cp-desc {
+      font-size: 13px;
+      color: var(--ink2);
+      line-height: 1.65
+    }
+
+    .cp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--green);
+      border: 1px solid rgba(0, 232, 122, 0.2);
+      background: rgba(0, 232, 122, 0.06);
+      padding: 3px 10px;
+      border-radius: 100px
+    }
+
+    /* ─── EXPERIENCE CARDS ─── */
+    .exp-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px
+    }
+
+    .exp-card {
+      background: rgba(255, 255, 255, 0.018);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 20px;
+      padding: 36px;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      cursor: default
+    }
+
+    .exp-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--violet), var(--cyan));
+      opacity: 0;
+      transition: opacity 0.35s
+    }
+
+    .exp-card:hover {
+      border-color: rgba(123, 104, 238, 0.25);
+      background: rgba(123, 104, 238, 0.04);
+      transform: translateX(6px)
+    }
+
+    .exp-card:hover::before {
+      opacity: 1
+    }
+
+    .exp-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap
+    }
+
+    .exp-co-block {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start
+    }
+
+    .exp-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(123, 104, 238, 0.12);
+      border: 1px solid rgba(123, 104, 238, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: var(--mono);
+      color: var(--violet2);
+      flex-shrink: 0
+    }
+
+    .exp-co {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.5px
+    }
+
+    .exp-role {
+      font-size: 12px;
+      color: var(--ink2);
+      margin-top: 2px
+    }
+
+    .exp-period-badge {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 12px;
+      background: rgba(123, 104, 238, 0.08);
+      border: 1px solid rgba(123, 104, 238, 0.18);
+      border-radius: 6px;
+      color: var(--violet2);
+      white-space: nowrap;
+      align-self: flex-start
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      color: var(--ink3);
+      transition: all 0.2s
+    }
+
+    .tag.hl {
+      color: var(--violet2);
+      border-color: rgba(123, 104, 238, 0.25);
+      background: rgba(123, 104, 238, 0.07)
+    }
+
+    .tag:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+      color: var(--ink2)
+    }
+
+    .achievements {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .achievements li {
+      font-size: 14px;
+      color: var(--ink2);
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.65
+    }
+
+    .achievements li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--violet2);
+      font-size: 11px;
+      top: 2px
+    }
+
+    .achievements li strong {
+      color: var(--ink);
+      font-weight: 500
+    }
+
+    .metrics-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05)
+    }
+
+    .m-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 100px;
+      background: rgba(123, 104, 238, 0.06);
+      border: 1px solid rgba(123, 104, 238, 0.14);
+      font-size: 12px
+    }
+
+    .m-pill .v {
+      color: var(--violet2);
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: 13px
+    }
+
+    .m-pill .l {
+      color: var(--ink2)
+    }
+
+    /* ─── METRICS BAND ─── */
+    #metrics-band {
+      padding: 80px 64px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      position: relative;
+      overflow: hidden
+    }
+
+    #metrics-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(123, 104, 238, 0.05) 0%, transparent 70%)
+    }
+
+    .metrics-row-big {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      max-width: 1280px;
+      margin: 0 auto;
+      gap: 1px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 16px;
+      overflow: hidden
+    }
+
+    .m-cell {
+      background: var(--bg);
+      padding: 40px 28px;
+      text-align: center;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden
+    }
+
+    .m-cell::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--violet), var(--cyan));
+      transform: scaleX(0);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)
+    }
+
+    .m-cell:hover {
+      background: #0a0a14
+    }
+
+    .m-cell:hover::after {
+      transform: scaleX(1)
+    }
+
+    .m-num {
+      font-size: 44px;
+      font-weight: 800;
+      font-family: var(--mono);
+      letter-spacing: -2px;
+      line-height: 1;
+      color: var(--ink)
+    }
+
+    .m-num em {
+      color: var(--violet2);
+      font-style: normal
+    }
+
+    .m-lbl {
+      font-size: 11px;
+      color: var(--ink3);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 500;
+      margin-top: 10px
+    }
+
+    /* ─── PROJECTS ─── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 18px
+    }
+
+    .proj-card {
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.018);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative
+    }
+
+    .proj-card:hover {
+      border-color: rgba(123, 104, 238, 0.28);
+      transform: translateY(-5px);
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(123, 104, 238, 0.12)
+    }
+
+    .proj-visual {
+      height: 196px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden
+    }
+
+    .proj-visual canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%
+    }
+
+    .proj-emoji {
+      font-size: 48px;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      filter: drop-shadow(0 0 20px rgba(123, 104, 238, 0.5))
+    }
+
+    .proj-card:hover .proj-emoji {
+      transform: scale(1.18) rotate(-6deg)
+    }
+
+    .proj-body {
+      padding: 24px
+    }
+
+    .proj-name {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--ink);
+      margin-bottom: 8px
+    }
+
+    .proj-desc {
+      font-size: 13px;
+      color: var(--ink2);
+      line-height: 1.65;
+      margin-bottom: 16px
+    }
+
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 16px
+    }
+
+    .proj-tag {
+      font-size: 10px;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--ink3);
+      font-family: var(--mono)
+    }
+
+    .proj-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink3);
+      padding: 5px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.02);
+      transition: all 0.2s
+    }
+
+    .proj-link:hover {
+      color: var(--ink);
+      border-color: rgba(255, 255, 255, 0.14)
+    }
+
+    /* ─── HIGHLIGHTS ─── */
+    .hl-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px
+    }
+
+    .hl-card {
+      background: rgba(255, 255, 255, 0.018);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      padding: 26px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden
+    }
+
+    .hl-card:hover {
+      border-color: rgba(123, 104, 238, 0.22);
+      transform: translateY(-3px);
+      background: rgba(123, 104, 238, 0.04)
+    }
+
+    .hl-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--violet2);
+      margin-bottom: 12px;
+      opacity: 0.55
+    }
+
+    .hl-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px
+    }
+
+    .hl-desc {
+      font-size: 13px;
+      color: var(--ink2);
+      line-height: 1.75
+    }
+
+    .hl-desc code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--violet2);
+      background: rgba(123, 104, 238, 0.1);
+      padding: 1px 6px;
+      border-radius: 4px
+    }
+
+    .hl-badge {
+      display: inline-block;
+      margin-top: 13px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 10px;
+      border-radius: 4px
+    }
+
+    /* ─── EXPERTISE ─── */
+    .exp-grid10 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+      gap: 12px
+    }
+
+    .skill-card {
+      background: rgba(255, 255, 255, 0.018);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 22px;
+      transition: all 0.28s;
+      cursor: default;
+      position: relative;
+      overflow: hidden
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(123, 104, 238, 0.1) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s
+    }
+
+    .skill-card:hover::before {
+      opacity: 1
+    }
+
+    .skill-card:hover {
+      border-color: rgba(123, 104, 238, 0.22);
+      transform: translateY(-2px)
+    }
+
+    .skill-icon {
+      font-size: 22px;
+      margin-bottom: 12px;
+      display: block
+    }
+
+    .skill-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 6px
+    }
+
+    .skill-items {
+      font-size: 12px;
+      color: var(--ink3);
+      line-height: 1.85
+    }
+
+    /* ─── TECH STRIP ─── */
+    .tech-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px
+    }
+
+    .tech-pill {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 15px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 9px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink2);
+      transition: all 0.22s;
+      cursor: default
+    }
+
+    .tech-pill:hover {
+      border-color: rgba(255, 255, 255, 0.13);
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.04);
+      transform: translateY(-2px)
+    }
+
+    .tech-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0
+    }
+
+    .tech-sec {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--ink3);
+      width: 100%;
+      margin: 22px 0 10px
+    }
+
+    /* ─── CONTACT ─── */
+    .contact-split {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 64px;
+      align-items: start
+    }
+
+    .c-links {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-top: 8px
+    }
+
+    .c-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.018);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      transition: all 0.28s;
+      color: var(--ink)
+    }
+
+    .c-link:hover {
+      border-color: rgba(123, 104, 238, 0.3);
+      background: rgba(123, 104, 238, 0.05);
+      transform: translateX(6px)
+    }
+
+    .c-icon {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 10px;
+      font-size: 17px;
+      flex-shrink: 0
+    }
+
+    .c-label {
+      font-size: 10px;
+      color: var(--ink3);
+      text-transform: uppercase;
+      letter-spacing: 1.2px
+    }
+
+    .c-val {
+      font-size: 14px;
+      font-weight: 500;
+      margin-top: 1px
+    }
+
+    .c-arrow {
+      color: var(--ink3);
+      margin-left: auto;
+      transition: all 0.25s
+    }
+
+    .c-link:hover .c-arrow {
+      color: var(--violet2);
+      transform: translateX(3px)
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px
+    }
+
+    .test-card {
+      background: rgba(255, 255, 255, 0.018);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      padding: 26px;
+      transition: all 0.25s;
+      position: relative
+    }
+
+    .test-card:hover {
+      border-color: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.025)
+    }
+
+    .pending-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 8px;
+      background: rgba(255, 179, 71, 0.1);
+      border: 1px solid rgba(255, 179, 71, 0.2);
+      color: var(--amber);
+      border-radius: 4px;
+      text-transform: uppercase
+    }
+
+    .test-q {
+      font-size: 32px;
+      color: var(--violet2);
+      opacity: 0.22;
+      line-height: 1;
+      font-family: Georgia, serif;
+      margin-bottom: 6px
+    }
+
+    .test-body {
+      font-size: 13px;
+      color: var(--ink2);
+      line-height: 1.75;
+      margin-bottom: 18px;
+      font-style: italic
+    }
+
+    .test-author {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .test-av {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--violet), var(--cyan));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0
+    }
+
+    .test-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink)
+    }
+
+    .test-role {
+      font-size: 11px;
+      color: var(--ink3)
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 36px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1280px;
+      margin: 0 auto
+    }
+
+    .footer-l {
+      font-size: 13px;
+      color: var(--ink3)
+    }
+
+    .footer-r {
+      font-size: 12px;
+      color: var(--ink3)
+    }
+
+    .footer-r em {
+      color: var(--violet2);
+      font-style: normal
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .sr {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1)
+    }
+
+    .sr.show {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .sr-d1 {
+      transition-delay: 0.06s
+    }
+
+    .sr-d2 {
+      transition-delay: 0.12s
+    }
+
+    .sr-d3 {
+      transition-delay: 0.18s
+    }
+
+    .sr-d4 {
+      transition-delay: 0.24s
+    }
+
+    .sr-d5 {
+      transition-delay: 0.30s
+    }
+
+    .sr-d6 {
+      transition-delay: 0.36s
+    }
+
+    /* ─── MOBILE ─── */
+    @media(max-width:768px) {
+      #nav {
+        padding: 0 20px
+      }
+
+      .nav-links {
+        display: none
+      }
+
+      #hero-content {
+        padding: 0 24px 72px
+      }
+
+      .hero-stats-row {
+        right: 24px;
+        bottom: 72px
+      }
+
+      .section {
+        padding: 80px 24px
+      }
+
+      .about-split,
+      .contact-split {
+        grid-template-columns: 1fr;
+        gap: 48px
+      }
+
+      #metrics-band {
+        padding: 60px 20px
+      }
+
+      footer {
+        padding: 28px 24px;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center
+      }
+
+      .divider {
+        margin: 0 24px
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- CURSOR -->
-<div id="csr"><div id="csr-dot"></div><div id="csr-trail"></div></div>
-
-<!-- SCROLL PROGRESS -->
-<div id="scroll-progress"></div>
-
-<!-- NAV -->
-<nav id="nav">
-  <div class="nav-brand"><div class="dot"></div>Kunwar Sadanand</div>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="#expertise">Skills</a>
-    <a href="#contact">Contact</a>
+  <!-- CURSOR -->
+  <div id="csr">
+    <div id="csr-dot"></div>
+    <div id="csr-trail"></div>
   </div>
-  <a href="mailto:ikunwarsadanand@gmail.com" class="nav-hire">Hire me ↗</a>
-</nav>
 
-<!-- ════ HERO ════ -->
-<section id="hero">
-  <video id="hero-video" autoplay muted loop playsinline preload="auto" src="hero.mp4"></video>
-  <div id="hero-overlay"></div>
-  <div id="hero-overlay2"></div>
+  <!-- SCROLL PROGRESS -->
+  <div id="scroll-progress"></div>
 
-  <div id="hero-content">
-    <div class="hero-eyebrow">Senior Flutter Engineer · Gurugram, India</div>
-    <h1 class="hero-title" id="heroTitle" aria-label="Kunwar Sadanand">
-      <!-- chars injected by JS -->
-    </h1>
-    <p class="hero-sub">
-      Building <strong>production-scale fintech systems</strong> used by hundreds of thousands.<br/>
-      Five years. Three companies. Real money. Real scale.
-    </p>
-    <div class="hero-actions">
-      <a href="mailto:ikunwarsadanand@gmail.com" class="btn-main">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
-        Get in touch
-      </a>
-      <a href="#projects" class="btn-ghost">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        View projects
-      </a>
-      <a href="https://github.com/ksadanand172" target="_blank" class="btn-ghost">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-        GitHub
-      </a>
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="nav-brand">
+      <div class="dot"></div>Kunwar Sadanand
+    </div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#expertise">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="mailto:ikunwarsadanand@gmail.com" class="nav-hire">Hire me ↗</a>
+  </nav>
+
+  <!-- ════ HERO ════ -->
+  <section id="hero">
+    <video id="hero-video" autoplay muted loop playsinline preload="auto" src="hero.mp4"></video>
+    <div id="hero-overlay"></div>
+    <div id="hero-overlay2"></div>
+
+    <div id="hero-content">
+      <div class="hero-eyebrow">Senior Flutter Engineer · Gurugram, India</div>
+      <h1 class="hero-title" id="heroTitle" aria-label="Kunwar Sadanand">
+        <!-- chars injected by JS -->
+      </h1>
+      <p class="hero-sub">
+        Building <strong>production-scale fintech systems</strong> used by hundreds of thousands.<br />
+        Five years. Three companies. Real money. Real scale.
+      </p>
+      <div class="hero-actions">
+        <a href="mailto:ikunwarsadanand@gmail.com" class="btn-main">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,12 2,6" />
+          </svg>
+          Get in touch
+        </a>
+        <a href="#projects" class="btn-ghost">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" />
+            <line x1="8" y1="21" x2="16" y2="21" />
+            <line x1="12" y1="17" x2="12" y2="21" />
+          </svg>
+          View projects
+        </a>
+        <a href="https://github.com/ksadanand172" target="_blank" class="btn-ghost">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+          </svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-stats-row">
+      <div class="hero-stat-item">
+        <div class="num"><span class="counter" data-t="100">0</span><em>K+</em></div>
+        <div class="lbl">Monthly Users</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="num">₹<span class="counter" data-t="120">0</span><em>Cr+</em></div>
+        <div class="lbl">Txn Volume / Mo</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="num"><span class="counter" data-t="500">0</span><em>K+</em></div>
+        <div class="lbl">Transactions / Mo</div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track" id="marqueeTrack">
+      <!-- duped by JS -->
+      <div class="marquee-item"><span class="code">flutter build --release</span><span
+          class="sep">·</span><span>Production Engineering</span></div>
+      <div class="marquee-item"><span class="code">BLoC + Clean Architecture</span><span
+          class="sep">·</span><span>System Design</span></div>
+      <div class="marquee-item"><span class="code">UPI · BBPS · Juspay · AA</span><span
+          class="sep">·</span><span>Fintech Payments</span></div>
+      <div class="marquee-item"><span class="code">shorebird release android</span><span class="sep">·</span><span>OTA
+          Deployment</span></div>
+      <div class="marquee-item"><span class="code">Offline-First Sync Engine</span><span class="sep">·</span><span>Zero
+          Data Loss</span></div>
+      <div class="marquee-item"><span class="code">100K+ MAUs · ₹120Cr/month</span><span class="sep">·</span><span>Real
+          Scale</span></div>
+      <div class="marquee-item"><span class="code">MethodChannel · ML Kit</span><span class="sep">·</span><span>Native
+          Integration</span></div>
+      <div class="marquee-item"><span class="code">maestro test flows/upi.yaml</span><span
+          class="sep">·</span><span>CI/CD</span></div>
     </div>
   </div>
 
-  <div class="hero-stats-row">
-    <div class="hero-stat-item"><div class="num"><span class="counter" data-t="100">0</span><em>K+</em></div><div class="lbl">Monthly Users</div></div>
-    <div class="hero-stat-item"><div class="num">₹<span class="counter" data-t="120">0</span><em>Cr+</em></div><div class="lbl">Txn Volume / Mo</div></div>
-    <div class="hero-stat-item"><div class="num"><span class="counter" data-t="500">0</span><em>K+</em></div><div class="lbl">Transactions / Mo</div></div>
-  </div>
+  <div class="divider"></div>
 
-  <div class="scroll-hint">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-track" id="marqueeTrack">
-    <!-- duped by JS -->
-    <div class="marquee-item"><span class="code">flutter build --release</span><span class="sep">·</span><span>Production Engineering</span></div>
-    <div class="marquee-item"><span class="code">BLoC + Clean Architecture</span><span class="sep">·</span><span>System Design</span></div>
-    <div class="marquee-item"><span class="code">UPI · BBPS · Juspay · AA</span><span class="sep">·</span><span>Fintech Payments</span></div>
-    <div class="marquee-item"><span class="code">shorebird release android</span><span class="sep">·</span><span>OTA Deployment</span></div>
-    <div class="marquee-item"><span class="code">Offline-First Sync Engine</span><span class="sep">·</span><span>Zero Data Loss</span></div>
-    <div class="marquee-item"><span class="code">100K+ MAUs · ₹120Cr/month</span><span class="sep">·</span><span>Real Scale</span></div>
-    <div class="marquee-item"><span class="code">MethodChannel · ML Kit</span><span class="sep">·</span><span>Native Integration</span></div>
-    <div class="marquee-item"><span class="code">maestro test flows/upi.yaml</span><span class="sep">·</span><span>CI/CD</span></div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- ════ ABOUT ════ -->
-<div class="section" id="about">
-  <div class="about-split">
-    <div>
-      <p class="s-eyebrow sr">Background</p>
-      <div class="big-statement sr sr-d1">
-        I don't just write Flutter.<br/>I <em>architect systems</em> that handle real money, at real scale, for real users.
-      </div>
-      <p class="body-text sr sr-d2">IIT (BHU) Varanasi graduate. Started as a feature engineer at Siply, scaled into system architect at Attentive AI, and became a <strong>Founding Engineer at SalarySe</strong> — bootstrapping the entire mobile platform from day one.</p>
-      <p class="body-text sr sr-d3">My focus is on the intersection of <strong>mobile systems engineering and fintech product development</strong> — UPI, Account Aggregator, lending SDKs, KYC, SSL pinning, biometric auth, and the kind of security hardening that financial applications demand.</p>
-      <div style="margin-top:28px">
-        <div class="award-row sr sr-d4"><div class="award-icon">🏆</div><div class="award-text"><strong>Best Mobile Developer of the Quarter</strong> — Attentive AI, Dec 2023</div></div>
-        <div class="award-row sr sr-d5"><div class="award-icon">🏆</div><div class="award-text"><strong>Best Performer of the Month</strong> — Siply, July 2022</div></div>
-        <div class="award-row sr sr-d6"><div class="award-icon">🎓</div><div class="award-text"><strong>B.Tech — IIT (BHU) Varanasi</strong>, 2017–2021</div></div>
-      </div>
-    </div>
-    <div class="sr sr-d2">
-      <p class="s-eyebrow" style="margin-bottom:28px">Career path</p>
-      <div class="career-path">
-        <div class="cp-item">
-          <div class="cp-line"><div class="cp-dot"></div><div class="cp-connector"></div></div>
-          <div class="cp-body">
-            <div class="cp-co">Siply</div>
-            <div class="cp-period">May 2021 — Feb 2023 · Bengaluru</div>
-            <div class="cp-desc">Micro-savings fintech. Built investment flows, cut CAC by 55%, reduced app size 20MB via S3 migration.</div>
-            <div class="cp-badge">↑ Feature Development</div>
+  <!-- ════ ABOUT ════ -->
+  <div class="section" id="about">
+    <div class="about-split">
+      <div>
+        <p class="s-eyebrow sr">Background</p>
+        <div class="big-statement sr sr-d1">
+          I don't just write Flutter.<br />I <em>architect systems</em> that handle real money, at real scale, for real
+          users.
+        </div>
+        <p class="body-text sr sr-d2">IIT (BHU) Varanasi graduate. Started as a feature engineer at Siply, scaled into
+          system architect at Attentive AI, and became a <strong>Founding Engineer at SalarySe</strong> — bootstrapping
+          the entire mobile platform from day one.</p>
+        <p class="body-text sr sr-d3">My focus is on the intersection of <strong>mobile systems engineering and fintech
+            product development</strong> — UPI, Account Aggregator, lending SDKs, KYC, SSL pinning, biometric auth, and
+          the kind of security hardening that financial applications demand.</p>
+        <div style="margin-top:28px">
+          <div class="award-row sr sr-d4">
+            <div class="award-icon">🏆</div>
+            <div class="award-text"><strong>Best Mobile Developer of the Quarter</strong> — Attentive AI, Dec 2023</div>
+          </div>
+          <div class="award-row sr sr-d5">
+            <div class="award-icon">🏆</div>
+            <div class="award-text"><strong>Best Performer of the Month</strong> — Siply, July 2022</div>
+          </div>
+          <div class="award-row sr sr-d6">
+            <div class="award-icon">🎓</div>
+            <div class="award-text"><strong>B.Tech — IIT (BHU) Varanasi</strong>, 2017–2021</div>
           </div>
         </div>
-        <div class="cp-item">
-          <div class="cp-line"><div class="cp-dot"></div><div class="cp-connector"></div></div>
-          <div class="cp-body">
-            <div class="cp-co">Attentive AI</div>
-            <div class="cp-period">Mar 2023 — Sep 2024 · Noida</div>
-            <div class="cp-desc">B2B Construction SaaS. Offline-first sync, ML Kit biometric, GPS geofencing — 100K+ MAUs in zero-connectivity environments.</div>
-            <div class="cp-badge">↑ System Design · Architecture</div>
+      </div>
+      <div class="sr sr-d2">
+        <p class="s-eyebrow" style="margin-bottom:28px">Career path</p>
+        <div class="career-path">
+          <div class="cp-item">
+            <div class="cp-line">
+              <div class="cp-dot"></div>
+              <div class="cp-connector"></div>
+            </div>
+            <div class="cp-body">
+              <div class="cp-co">Siply</div>
+              <div class="cp-period">May 2021 — Feb 2023 · Bengaluru</div>
+              <div class="cp-desc">Micro-savings fintech. Built investment flows, cut CAC by 55%, reduced app size 20MB
+                via S3 migration.</div>
+              <div class="cp-badge">↑ Feature Development</div>
+            </div>
+          </div>
+          <div class="cp-item">
+            <div class="cp-line">
+              <div class="cp-dot"></div>
+              <div class="cp-connector"></div>
+            </div>
+            <div class="cp-body">
+              <div class="cp-co">Attentive AI</div>
+              <div class="cp-period">Mar 2023 — Sep 2024 · Noida</div>
+              <div class="cp-desc">B2B Construction SaaS. Offline-first sync, ML Kit biometric, GPS geofencing — 100K+
+                MAUs in zero-connectivity environments.</div>
+              <div class="cp-badge">↑ System Design · Architecture</div>
+            </div>
+          </div>
+          <div class="cp-item">
+            <div class="cp-line">
+              <div class="cp-dot live"></div>
+            </div>
+            <div class="cp-body">
+              <div class="cp-co">SalarySe</div>
+              <div class="cp-period">Oct 2024 — Present · Gurgaon</div>
+              <div class="cp-desc">Founding Engineer. Bootstrapped entire Flutter architecture. Led 3-person team.
+                ₹120Cr+ monthly transaction volume.</div>
+              <div class="cp-badge">↑ Platform Ownership · Team Lead</div>
+            </div>
           </div>
         </div>
-        <div class="cp-item">
-          <div class="cp-line"><div class="cp-dot live"></div></div>
-          <div class="cp-body">
-            <div class="cp-co">SalarySe</div>
-            <div class="cp-period">Oct 2024 — Present · Gurgaon</div>
-            <div class="cp-desc">Founding Engineer. Bootstrapped entire Flutter architecture. Led 3-person team. ₹120Cr+ monthly transaction volume.</div>
-            <div class="cp-badge">↑ Platform Ownership · Team Lead</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════ EXPERIENCE ════ -->
+  <div class="section" id="experience">
+    <p class="s-eyebrow sr">Work history</p>
+    <h2 class="s-title sr sr-d1">Where I've shipped</h2>
+    <p class="s-sub sr sr-d2">Three product companies. Five fintech products. Production apps with hundreds of thousands
+      of users.</p>
+    <div class="exp-stack">
+      <!-- SalarySe -->
+      <div class="exp-card sr">
+        <div class="exp-head">
+          <div class="exp-co-block">
+            <div class="exp-logo">SS</div>
+            <div>
+              <div class="exp-co">SalarySe</div>
+              <div class="exp-role">Founding Engineer · Fintech Super App</div>
+            </div>
+          </div>
+          <div class="exp-period-badge">Oct 2024 — Present</div>
+        </div>
+        <div class="tag-row"><span class="tag hl">Flutter</span><span class="tag hl">BLoC</span><span
+            class="tag hl">UPI</span><span class="tag hl">BBPS</span><span class="tag">GetIt</span><span
+            class="tag">Dio</span><span class="tag">Maestro</span><span class="tag">Juspay</span><span
+            class="tag">Account Aggregator</span><span class="tag">Biometric Auth</span><span class="tag">CI/CD</span>
+        </div>
+        <ul class="achievements">
+          <li>Bootstrapped the entire Flutter app architecture — BLoC state management, Dio networking, GetIt DI,
+            navigation, biometric auth, and <strong>concurrency-safe token refresh</strong>.</li>
+          <li>Reduced cold-start time by <strong>35% (2.8s → 1.8s)</strong> by registering only essential singletons
+            eagerly in GetIt, eliminating main-thread pre-frame work.</li>
+          <li>Bridged native Android/iOS lending SDKs via <strong>MethodChannel</strong>, enabling KYC, mandate setup,
+            and full loan lifecycle management across 2000+ active loans.</li>
+          <li>Eliminated scroll frame drops on long lists by removing GPU-expensive backdrop blur — <strong>restored
+              smooth 60 fps</strong> on low-end devices.</li>
+          <li>Shipped <strong>PFM, Flexi Benefits, BBPS, LOC, UPI payment flows</strong> — 500K+ transactions, ₹120Cr+
+            monthly volume.</li>
+          <li>Led a 3-person mobile team, owning architecture and delivery for 5+ fintech products to 100K+ users.</li>
+        </ul>
+        <div class="metrics-row">
+          <div class="m-pill"><span class="v">100K+</span><span class="l">MAUs</span></div>
+          <div class="m-pill"><span class="v">500K+</span><span class="l">Monthly txns</span></div>
+          <div class="m-pill"><span class="v">₹120Cr+</span><span class="l">Volume</span></div>
+          <div class="m-pill"><span class="v">35%</span><span class="l">Faster startup</span></div>
+          <div class="m-pill"><span class="v">60fps</span><span class="l">Smooth on low-end</span></div>
+        </div>
+      </div>
+      <!-- Attentive AI -->
+      <div class="exp-card sr sr-d1">
+        <div class="exp-head">
+          <div class="exp-co-block">
+            <div class="exp-logo">AI</div>
+            <div>
+              <div class="exp-co">Attentive AI</div>
+              <div class="exp-role">Software Engineer · B2B Construction SaaS</div>
+            </div>
+          </div>
+          <div class="exp-period-badge">Mar 2023 — Sep 2024</div>
+        </div>
+        <div class="tag-row"><span class="tag hl">Flutter</span><span class="tag hl">Offline-First</span><span
+            class="tag hl">ML Kit</span><span class="tag hl">Shorebird OTA</span><span class="tag">GPS
+            Geofencing</span><span class="tag">Biometric Attendance</span><span class="tag">Feature Flagging</span>
+        </div>
+        <ul class="achievements">
+          <li>Engineered an <strong>offline-first sync engine with queued API replay</strong> — zero data loss in
+            low-connectivity field environments, 100K+ MAUs.</li>
+          <li>Shipped <strong>OTA updates and feature flagging via Shorebird</strong>, cutting critical bug-fix
+            turnaround from days to minutes.</li>
+          <li>Implemented <strong>real-time GPS tracking and geofencing</strong> for live crew monitoring and
+            location-validated job check-ins.</li>
+          <li>Built <strong>on-device biometric attendance</strong> using ML Kit face detection and facial embedding
+            matching for 300+ crew members.</li>
+          <li>Awarded <strong>Best Mobile Developer of the Quarter (Dec 2023)</strong>.</li>
+        </ul>
+        <div class="metrics-row">
+          <div class="m-pill"><span class="v">100K+</span><span class="l">MAUs</span></div>
+          <div class="m-pill"><span class="v">300+</span><span class="l">Crew tracked</span></div>
+          <div class="m-pill"><span class="v">Zero</span><span class="l">Data loss</span></div>
+          <div class="m-pill"><span class="v">Minutes</span><span class="l">OTA fix time</span></div>
+        </div>
+      </div>
+      <!-- Siply -->
+      <div class="exp-card sr sr-d2">
+        <div class="exp-head">
+          <div class="exp-co-block">
+            <div class="exp-logo">SI</div>
+            <div>
+              <div class="exp-co">Siply</div>
+              <div class="exp-role">Software Engineer · Micro-Savings Fintech</div>
+            </div>
+          </div>
+          <div class="exp-period-badge">May 2021 — Feb 2023</div>
+        </div>
+        <div class="tag-row"><span class="tag hl">Flutter</span><span class="tag hl">Micro-Savings</span><span
+            class="tag">Investments</span><span class="tag">KYC</span><span class="tag">S3 Migration</span><span
+            class="tag">Onboarding</span></div>
+        <ul class="achievements">
+          <li>Built and scaled a fintech app supporting <strong>micro-savings, investments, and financial
+              services</strong>.</li>
+          <li>Revamped onboarding flows and optimized API usage, <strong>reducing user acquisition cost by 55%</strong>.
+          </li>
+          <li>Improved app performance via asset pre-caching and S3 migration, <strong>reducing app size by
+              20MB</strong>.</li>
+          <li>Awarded <strong>Best Performer of the Month (July 2022)</strong>.</li>
+        </ul>
+        <div class="metrics-row">
+          <div class="m-pill"><span class="v">55%</span><span class="l">CAC reduction</span></div>
+          <div class="m-pill"><span class="v">20MB</span><span class="l">App size saved</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <div id="metrics-band">
+    <div class="metrics-row-big">
+      <div class="m-cell sr">
+        <div class="m-num"><span class="counter" data-t="5">0</span><em>+</em></div>
+        <div class="m-lbl">Years Experience</div>
+      </div>
+      <div class="m-cell sr sr-d1">
+        <div class="m-num"><span class="counter" data-t="3">0</span></div>
+        <div class="m-lbl">Product Companies</div>
+      </div>
+      <div class="m-cell sr sr-d2">
+        <div class="m-num"><span class="counter" data-t="100">0</span><em>K+</em></div>
+        <div class="m-lbl">Monthly Active Users</div>
+      </div>
+      <div class="m-cell sr sr-d3">
+        <div class="m-num">₹<span class="counter" data-t="120">0</span><em>Cr+</em></div>
+        <div class="m-lbl">Monthly Txn Volume</div>
+      </div>
+      <div class="m-cell sr sr-d4">
+        <div class="m-num"><span class="counter" data-t="500">0</span><em>K+</em></div>
+        <div class="m-lbl">Monthly Transactions</div>
+      </div>
+      <div class="m-cell sr sr-d5">
+        <div class="m-num"><span class="counter" data-t="5">0</span><em>+</em></div>
+        <div class="m-lbl">Products Shipped</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════ PROJECTS ════ -->
+  <div class="section" id="projects">
+    <p class="s-eyebrow sr">Featured work</p>
+    <h2 class="s-title sr sr-d1">Production systems,<br />not side projects</h2>
+    <p class="s-sub sr sr-d2">Every project runs in production. Real users, real transactions, real scale.</p>
+    <div class="projects-grid">
+      <div class="proj-card sr">
+        <div class="proj-visual"><canvas id="pc1"></canvas>
+          <div class="proj-emoji">💳</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-name">UPI &amp; Payments Platform</div>
+          <div class="proj-desc">End-to-end UPI flows with Juspay HyperSDK, BBPS bill payments, and LOC management.
+            500K+ transactions monthly.</div>
+          <div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">Juspay</span><span
+              class="proj-tag">MethodChannel</span><span class="proj-tag">UPI</span><span class="proj-tag">BBPS</span>
+          </div><a href="https://play.google.com/store/apps/details?id=com.salaryse.android" target="_blank"
+            class="proj-link">↗ Play Store</a>
+        </div>
+      </div>
+      <div class="proj-card sr sr-d1">
+        <div class="proj-visual"><canvas id="pc2"></canvas>
+          <div class="proj-emoji">🔄</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-name">Offline-First Sync Engine</div>
+          <div class="proj-desc">Queued API replay for 100K+ field workers. Zero data loss in zero-connectivity
+            environments.</div>
+          <div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">Hive</span><span
+              class="proj-tag">Dio Interceptors</span><span class="proj-tag">Shorebird</span></div><a
+            href="https://play.google.com/store/apps/details?id=ai.attentive.crew" target="_blank" class="proj-link">↗
+            Accelerate Crew</a>
+        </div>
+      </div>
+      <div class="proj-card sr sr-d2">
+        <div class="proj-visual"><canvas id="pc3"></canvas>
+          <div class="proj-emoji">🧠</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-name">AI Biometric Attendance</div>
+          <div class="proj-desc">On-device face detection + embedding matching via ML Kit. No server. Works offline.
+            300+ crew members.</div>
+          <div class="proj-tags"><span class="proj-tag">ML Kit</span><span class="proj-tag">Flutter</span><span
+              class="proj-tag">On-device AI</span></div><a
+            href="https://play.google.com/store/apps/details?id=ai.attentive.crew" target="_blank" class="proj-link">↗
+            Play Store</a>
+        </div>
+      </div>
+      <div class="proj-card sr sr-d3">
+        <div class="proj-visual"><canvas id="pc4"></canvas>
+          <div class="proj-emoji">📊</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-name">Personal Finance Management</div>
+          <div class="proj-desc">Account Aggregator integration, expense categorization, spending insights, goal
+            tracking.</div>
+          <div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">BLoC</span><span
+              class="proj-tag">Account Aggregator</span></div><a
+            href="https://play.google.com/store/apps/details?id=com.salaryse.android" target="_blank"
+            class="proj-link">↗ SalarySe</a>
+        </div>
+      </div>
+      <div class="proj-card sr sr-d4">
+        <div class="proj-visual"><canvas id="pc5"></canvas>
+          <div class="proj-emoji">🎁</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-name">Flexi Benefits &amp; Lending</div>
+          <div class="proj-desc">Earned wage access, LOC flows, native lending SDK integration across 2000+ active
+            loans.</div>
+          <div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">MethodChannel</span><span
+              class="proj-tag">Native SDK</span></div><a
+            href="https://play.google.com/store/apps/details?id=com.salaryse.android" target="_blank"
+            class="proj-link">↗ SalarySe</a>
+        </div>
+      </div>
+      <div class="proj-card sr sr-d5">
+        <div class="proj-visual"><canvas id="pc6"></canvas>
+          <div class="proj-emoji">📍</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-name">Real-Time GPS &amp; Geofencing</div>
+          <div class="proj-desc">Live crew tracking, location-validated check-ins, geofenced zones, battery-efficient
+            background tracking.</div>
+          <div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">GPS</span><span
+              class="proj-tag">Geofencing</span></div><a
+            href="https://play.google.com/store/apps/details?id=ai.attentive.crew" target="_blank" class="proj-link">↗
+            Accelerate Crew</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════ HIGHLIGHTS ════ -->
+  <div class="section" id="highlights">
+    <p class="s-eyebrow sr">Deep dives</p>
+    <h2 class="s-title sr sr-d1">Technical highlights</h2>
+    <p class="s-sub sr sr-d2">Engineering problems I've solved that most Flutter engineers haven't encountered.</p>
+    <div class="hl-grid">
+      <div class="hl-card sr">
+        <div class="hl-num">01</div>
+        <div class="hl-title">Offline-First Sync Engine</div>
+        <div class="hl-desc">Built a <code>queued API replay</code> system in Hive. Mutations written locally first,
+          replayed in-order with <code>idempotency keys</code> on reconnect.</div><span class="hl-badge"
+          style="background:rgba(0,212,255,0.08);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">Zero data
+          loss</span>
+      </div>
+      <div class="hl-card sr sr-d1">
+        <div class="hl-num">02</div>
+        <div class="hl-title">Native SDK Bridging</div>
+        <div class="hl-desc">Wrapped Android/iOS lending SDKs using <code>MethodChannel</code> and
+          <code>EventChannel</code>. Handles async callbacks, lifecycle events, and cross-platform error propagation for
+          2000+ loan flows.</div><span class="hl-badge"
+          style="background:rgba(123,104,238,0.1);color:#a99ef7;border:1px solid rgba(123,104,238,0.25)">2000+
+          loans</span>
+      </div>
+      <div class="hl-card sr sr-d2">
+        <div class="hl-num">03</div>
+        <div class="hl-title">Cold Start Optimization</div>
+        <div class="hl-desc">Cut startup 2.8s → 1.8s (35%) by profiling <code>main()</code> and deferring non-critical
+          <code>GetIt</code> registrations post-frame. Only auth, DI, and nav bootstrap eagerly.</div><span
+          class="hl-badge"
+          style="background:rgba(0,232,122,0.08);color:#00e87a;border:1px solid rgba(0,232,122,0.22)">35% faster</span>
+      </div>
+      <div class="hl-card sr sr-d3">
+        <div class="hl-num">04</div>
+        <div class="hl-title">Shorebird OTA + Feature Flags</div>
+        <div class="hl-desc">Dart-layer hot patches with Shorebird. Critical fintech bugs fixed and rolled out in
+          minutes, not days — no Play Store review wait. Feature flagging for safe staged rollouts.</div><span
+          class="hl-badge"
+          style="background:rgba(255,179,71,0.08);color:#ffb347;border:1px solid rgba(255,179,71,0.22)">Minutes not
+          days</span>
+      </div>
+      <div class="hl-card sr sr-d4">
+        <div class="hl-num">05</div>
+        <div class="hl-title">On-Device ML Attendance</div>
+        <div class="hl-desc">Face detection + <code>embedding matching</code> with ML Kit entirely on-device. No server
+          round-trip. <code>Secure storage</code> for facial embeddings. Works fully offline for 300+ crew.</div><span
+          class="hl-badge"
+          style="background:rgba(123,104,238,0.1);color:#a99ef7;border:1px solid rgba(123,104,238,0.25)">On-device
+          AI</span>
+      </div>
+      <div class="hl-card sr sr-d5">
+        <div class="hl-num">06</div>
+        <div class="hl-title">Fintech Security Stack</div>
+        <div class="hl-desc"><code>SSL pinning</code> against MITM, <code>root/jailbreak detection</code> with layered
+          heuristics, biometric auth, and concurrency-safe <code>JWT refresh</code> with a single in-flight guard.</div>
+        <span class="hl-badge"
+          style="background:rgba(0,232,122,0.08);color:#00e87a;border:1px solid rgba(0,232,122,0.22)">Production-grade</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════ EXPERTISE ════ -->
+  <div class="section" id="expertise">
+    <p class="s-eyebrow sr">Engineering expertise</p>
+    <h2 class="s-title sr sr-d1">What I bring<br />to the table</h2>
+    <p class="s-sub sr sr-d2">Five years of production challenges distilled into a clear engineering profile.</p>
+    <div class="exp-grid10">
+      <div class="skill-card sr"><span class="skill-icon">🏗️</span>
+        <div class="skill-name">Architecture</div>
+        <div class="skill-items">Clean Architecture · Feature-First · DI · SOLID</div>
+      </div>
+      <div class="skill-card sr sr-d1"><span class="skill-icon">📱</span>
+        <div class="skill-name">Flutter &amp; Dart</div>
+        <div class="skill-items">Platform Channels · Isolates · Deep Linking · Push</div>
+      </div>
+      <div class="skill-card sr sr-d2"><span class="skill-icon">🔄</span>
+        <div class="skill-name">State Management</div>
+        <div class="skill-items">BLoC / Cubit · GetIt · Stream Architecture</div>
+      </div>
+      <div class="skill-card sr sr-d3"><span class="skill-icon">⚡</span>
+        <div class="skill-name">Performance</div>
+        <div class="skill-items">Cold Start · 60/120fps · Memory · Asset Caching</div>
+      </div>
+      <div class="skill-card sr sr-d4"><span class="skill-icon">💰</span>
+        <div class="skill-name">Payments &amp; Fintech</div>
+        <div class="skill-items">UPI · BBPS · Juspay · Account Aggregator · KYC</div>
+      </div>
+      <div class="skill-card sr sr-d5"><span class="skill-icon">🔒</span>
+        <div class="skill-name">Security</div>
+        <div class="skill-items">SSL Pinning · Biometric · Root Detection · JWT</div>
+      </div>
+      <div class="skill-card sr"><span class="skill-icon">🔌</span>
+        <div class="skill-name">Native Integration</div>
+        <div class="skill-items">MethodChannel · EventChannel · Kotlin · Swift</div>
+      </div>
+      <div class="skill-card sr sr-d1"><span class="skill-icon">🚀</span>
+        <div class="skill-name">DevOps &amp; CI/CD</div>
+        <div class="skill-items">GitHub Actions · Shorebird OTA · Multi-Flavor · Maestro</div>
+      </div>
+      <div class="skill-card sr sr-d2"><span class="skill-icon">📡</span>
+        <div class="skill-name">Observability</div>
+        <div class="skill-items">Crashlytics · Sentry · Mixpanel · AppsFlyer · UXCam</div>
+      </div>
+      <div class="skill-card sr sr-d3"><span class="skill-icon">🤖</span>
+        <div class="skill-name">AI / GenAI</div>
+        <div class="skill-items">LLM Integration · Voice-to-Intent · On-device ML</div>
+      </div>
+    </div>
+    <div style="margin-top:52px">
+      <div class="tech-flex sr sr-d1">
+        <div class="tech-sec">Core</div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#54c5f8"></div>Flutter
+        </div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#00b4d2"></div>Dart
+        </div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#3ddc84"></div>Android · Kotlin
+        </div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#fa7343"></div>iOS · Swift
+        </div>
+        <div class="tech-sec">Architecture</div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#7b68ee"></div>BLoC / Cubit
+        </div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#a99ef7"></div>GetIt DI
+        </div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#6c63ff"></div>Clean Architecture
+        </div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#22c55e"></div>Dio
+        </div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#06b6d4"></div>Hive
+        </div>
+        <div class="tech-sec">Payments</div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#0066cc"></div>Juspay HyperSDK
+        </div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#00a651"></div>UPI
+        </div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#e91e8c"></div>BBPS
+        </div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#ff9800"></div>Account Aggregator
+        </div>
+        <div class="tech-sec">Observability &amp; DevOps</div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#ffca28"></div>Firebase
+        </div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#f05a28"></div>Crashlytics
+        </div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#7856ff"></div>Mixpanel
+        </div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#24292e"></div>GitHub Actions
+        </div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#0070f3"></div>Shorebird OTA
+        </div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#ff4154"></div>Maestro
+        </div>
+        <div class="tech-pill">
+          <div class="tech-dot" style="background:#764abc"></div>Sentry
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════ TESTIMONIALS ════ -->
+  <div class="section" id="testimonials">
+    <p class="s-eyebrow sr">Recommendations</p>
+    <h2 class="s-title sr sr-d1">What colleagues say</h2>
+    <p class="s-sub sr sr-d2">Testimonials from people I've worked closely with. More coming soon.</p>
+    <div class="test-grid">
+      <div class="test-card sr">
+        <div class="pending-badge">Pending</div>
+        <div class="test-q">"</div>
+        <div class="test-body">Kunwar bootstrapped our entire mobile architecture from scratch. The quality of the
+          system he built is what allowed us to scale to 100K+ users without major rewrites.</div>
+        <div class="test-author">
+          <div class="test-av">SK</div>
+          <div>
+            <div class="test-name">Colleague at SalarySe</div>
+            <div class="test-role">Engineering Leadership</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card sr sr-d2">
+        <div class="pending-badge">Pending</div>
+        <div class="test-q">"</div>
+        <div class="test-body">The offline sync engine he built was a game changer. We went from data loss complaints
+          weekly to zero incidents in production. Exceptional engineering.</div>
+        <div class="test-author">
+          <div class="test-av">RA</div>
+          <div>
+            <div class="test-name">Colleague at Attentive AI</div>
+            <div class="test-role">Product &amp; Engineering</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card sr sr-d4">
+        <div class="pending-badge">Pending</div>
+        <div class="test-q">"</div>
+        <div class="test-body">One of the most technically thorough mobile engineers I've worked with. He thinks about
+          the entire system, performance, and edge cases most engineers miss.</div>
+        <div class="test-author">
+          <div class="test-av">MS</div>
+          <div>
+            <div class="test-name">Colleague at Siply</div>
+            <div class="test-role">Engineering</div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="divider"></div>
+  <div class="divider"></div>
 
-<!-- ════ EXPERIENCE ════ -->
-<div class="section" id="experience">
-  <p class="s-eyebrow sr">Work history</p>
-  <h2 class="s-title sr sr-d1">Where I've shipped</h2>
-  <p class="s-sub sr sr-d2">Three product companies. Five fintech products. Production apps with hundreds of thousands of users.</p>
-  <div class="exp-stack">
-    <!-- SalarySe -->
-    <div class="exp-card sr">
-      <div class="exp-head">
-        <div class="exp-co-block">
-          <div class="exp-logo">SS</div>
-          <div><div class="exp-co">SalarySe</div><div class="exp-role">Founding Engineer · Fintech Super App</div></div>
-        </div>
-        <div class="exp-period-badge">Oct 2024 — Present</div>
+  <!-- ════ CONTACT ════ -->
+  <div class="section" id="contact">
+    <div class="contact-split">
+      <div class="sr">
+        <p class="s-eyebrow">Let's talk</p>
+        <h2 class="s-title" style="margin-bottom:18px">Open to the<br />right opportunity</h2>
+        <p style="font-size:15px;color:var(--ink2);line-height:1.85;max-width:460px">Particularly interested in roles at
+          companies doing serious mobile systems work — <strong style="color:var(--ink)">PhonePe, Razorpay, CRED, Groww,
+            Zepto, Rippling</strong> or similarly ambitious teams building at scale.</p>
+        <p style="font-size:15px;color:var(--ink2);line-height:1.85;max-width:460px;margin-top:14px">If you're building
+          something that requires production-grade Flutter engineering — let's connect.</p>
       </div>
-      <div class="tag-row"><span class="tag hl">Flutter</span><span class="tag hl">BLoC</span><span class="tag hl">UPI</span><span class="tag hl">BBPS</span><span class="tag">GetIt</span><span class="tag">Dio</span><span class="tag">Maestro</span><span class="tag">Juspay</span><span class="tag">Account Aggregator</span><span class="tag">Biometric Auth</span><span class="tag">CI/CD</span></div>
-      <ul class="achievements">
-        <li>Bootstrapped the entire Flutter app architecture — BLoC state management, Dio networking, GetIt DI, navigation, biometric auth, and <strong>concurrency-safe token refresh</strong>.</li>
-        <li>Reduced cold-start time by <strong>35% (2.8s → 1.8s)</strong> by registering only essential singletons eagerly in GetIt, eliminating main-thread pre-frame work.</li>
-        <li>Bridged native Android/iOS lending SDKs via <strong>MethodChannel</strong>, enabling KYC, mandate setup, and full loan lifecycle management across 2000+ active loans.</li>
-        <li>Eliminated scroll frame drops on long lists by removing GPU-expensive backdrop blur — <strong>restored smooth 60 fps</strong> on low-end devices.</li>
-        <li>Shipped <strong>PFM, Flexi Benefits, BBPS, LOC, UPI payment flows</strong> — 500K+ transactions, ₹120Cr+ monthly volume.</li>
-        <li>Led a 3-person mobile team, owning architecture and delivery for 5+ fintech products to 100K+ users.</li>
-      </ul>
-      <div class="metrics-row">
-        <div class="m-pill"><span class="v">100K+</span><span class="l">MAUs</span></div>
-        <div class="m-pill"><span class="v">500K+</span><span class="l">Monthly txns</span></div>
-        <div class="m-pill"><span class="v">₹120Cr+</span><span class="l">Volume</span></div>
-        <div class="m-pill"><span class="v">35%</span><span class="l">Faster startup</span></div>
-        <div class="m-pill"><span class="v">60fps</span><span class="l">Smooth on low-end</span></div>
-      </div>
-    </div>
-    <!-- Attentive AI -->
-    <div class="exp-card sr sr-d1">
-      <div class="exp-head">
-        <div class="exp-co-block">
-          <div class="exp-logo">AI</div>
-          <div><div class="exp-co">Attentive AI</div><div class="exp-role">Software Engineer · B2B Construction SaaS</div></div>
-        </div>
-        <div class="exp-period-badge">Mar 2023 — Sep 2024</div>
-      </div>
-      <div class="tag-row"><span class="tag hl">Flutter</span><span class="tag hl">Offline-First</span><span class="tag hl">ML Kit</span><span class="tag hl">Shorebird OTA</span><span class="tag">GPS Geofencing</span><span class="tag">Biometric Attendance</span><span class="tag">Feature Flagging</span></div>
-      <ul class="achievements">
-        <li>Engineered an <strong>offline-first sync engine with queued API replay</strong> — zero data loss in low-connectivity field environments, 100K+ MAUs.</li>
-        <li>Shipped <strong>OTA updates and feature flagging via Shorebird</strong>, cutting critical bug-fix turnaround from days to minutes.</li>
-        <li>Implemented <strong>real-time GPS tracking and geofencing</strong> for live crew monitoring and location-validated job check-ins.</li>
-        <li>Built <strong>on-device biometric attendance</strong> using ML Kit face detection and facial embedding matching for 300+ crew members.</li>
-        <li>Awarded <strong>Best Mobile Developer of the Quarter (Dec 2023)</strong>.</li>
-      </ul>
-      <div class="metrics-row">
-        <div class="m-pill"><span class="v">100K+</span><span class="l">MAUs</span></div>
-        <div class="m-pill"><span class="v">300+</span><span class="l">Crew tracked</span></div>
-        <div class="m-pill"><span class="v">Zero</span><span class="l">Data loss</span></div>
-        <div class="m-pill"><span class="v">Minutes</span><span class="l">OTA fix time</span></div>
-      </div>
-    </div>
-    <!-- Siply -->
-    <div class="exp-card sr sr-d2">
-      <div class="exp-head">
-        <div class="exp-co-block">
-          <div class="exp-logo">SI</div>
-          <div><div class="exp-co">Siply</div><div class="exp-role">Software Engineer · Micro-Savings Fintech</div></div>
-        </div>
-        <div class="exp-period-badge">May 2021 — Feb 2023</div>
-      </div>
-      <div class="tag-row"><span class="tag hl">Flutter</span><span class="tag hl">Micro-Savings</span><span class="tag">Investments</span><span class="tag">KYC</span><span class="tag">S3 Migration</span><span class="tag">Onboarding</span></div>
-      <ul class="achievements">
-        <li>Built and scaled a fintech app supporting <strong>micro-savings, investments, and financial services</strong>.</li>
-        <li>Revamped onboarding flows and optimized API usage, <strong>reducing user acquisition cost by 55%</strong>.</li>
-        <li>Improved app performance via asset pre-caching and S3 migration, <strong>reducing app size by 20MB</strong>.</li>
-        <li>Awarded <strong>Best Performer of the Month (July 2022)</strong>.</li>
-      </ul>
-      <div class="metrics-row">
-        <div class="m-pill"><span class="v">55%</span><span class="l">CAC reduction</span></div>
-        <div class="m-pill"><span class="v">20MB</span><span class="l">App size saved</span></div>
+      <div class="c-links sr sr-d2">
+        <a href="mailto:ikunwarsadanand@gmail.com" class="c-link">
+          <div class="c-icon">✉️</div>
+          <div>
+            <div class="c-label">Email</div>
+            <div class="c-val">ikunwarsadanand@gmail.com</div>
+          </div>
+          <div class="c-arrow">→</div>
+        </a>
+        <a href="https://linkedin.com/in/ksadanand" target="_blank" class="c-link">
+          <div class="c-icon">💼</div>
+          <div>
+            <div class="c-label">LinkedIn</div>
+            <div class="c-val">linkedin.com/in/ksadanand</div>
+          </div>
+          <div class="c-arrow">→</div>
+        </a>
+        <a href="https://github.com/ksadanand172" target="_blank" class="c-link">
+          <div class="c-icon">⚡</div>
+          <div>
+            <div class="c-label">GitHub</div>
+            <div class="c-val">github.com/ksadanand172</div>
+          </div>
+          <div class="c-arrow">→</div>
+        </a>
+        <a href="tel:+919140662178" class="c-link">
+          <div class="c-icon">📱</div>
+          <div>
+            <div class="c-label">Phone</div>
+            <div class="c-val">+91 91406 62178</div>
+          </div>
+          <div class="c-arrow">→</div>
+        </a>
       </div>
     </div>
   </div>
-</div>
 
-<!-- METRICS -->
-<div id="metrics-band">
-  <div class="metrics-row-big">
-    <div class="m-cell sr"><div class="m-num"><span class="counter" data-t="5">0</span><em>+</em></div><div class="m-lbl">Years Experience</div></div>
-    <div class="m-cell sr sr-d1"><div class="m-num"><span class="counter" data-t="3">0</span></div><div class="m-lbl">Product Companies</div></div>
-    <div class="m-cell sr sr-d2"><div class="m-num"><span class="counter" data-t="100">0</span><em>K+</em></div><div class="m-lbl">Monthly Active Users</div></div>
-    <div class="m-cell sr sr-d3"><div class="m-num">₹<span class="counter" data-t="120">0</span><em>Cr+</em></div><div class="m-lbl">Monthly Txn Volume</div></div>
-    <div class="m-cell sr sr-d4"><div class="m-num"><span class="counter" data-t="500">0</span><em>K+</em></div><div class="m-lbl">Monthly Transactions</div></div>
-    <div class="m-cell sr sr-d5"><div class="m-num"><span class="counter" data-t="5">0</span><em>+</em></div><div class="m-lbl">Products Shipped</div></div>
-  </div>
-</div>
+  <div class="divider"></div>
+  <footer>
+    <div class="footer-l">© 2025 Kunwar Sadanand — Senior Flutter Engineer</div>
+    <div class="footer-r">Gurugram, India · <em>Open to remote</em></div>
+  </footer>
 
-<div class="divider"></div>
+  <script>
+    /* ══ EASE ══ */
+    const EASE = t => 1 - Math.pow(1 - t, 3);
 
-<!-- ════ PROJECTS ════ -->
-<div class="section" id="projects">
-  <p class="s-eyebrow sr">Featured work</p>
-  <h2 class="s-title sr sr-d1">Production systems,<br/>not side projects</h2>
-  <p class="s-sub sr sr-d2">Every project runs in production. Real users, real transactions, real scale.</p>
-  <div class="projects-grid">
-    <div class="proj-card sr"><div class="proj-visual"><canvas id="pc1"></canvas><div class="proj-emoji">💳</div></div><div class="proj-body"><div class="proj-name">UPI &amp; Payments Platform</div><div class="proj-desc">End-to-end UPI flows with Juspay HyperSDK, BBPS bill payments, and LOC management. 500K+ transactions monthly.</div><div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">Juspay</span><span class="proj-tag">MethodChannel</span><span class="proj-tag">UPI</span><span class="proj-tag">BBPS</span></div><a href="https://play.google.com/store/apps/details?id=com.salaryse.android" target="_blank" class="proj-link">↗ Play Store</a></div></div>
-    <div class="proj-card sr sr-d1"><div class="proj-visual"><canvas id="pc2"></canvas><div class="proj-emoji">🔄</div></div><div class="proj-body"><div class="proj-name">Offline-First Sync Engine</div><div class="proj-desc">Queued API replay for 100K+ field workers. Zero data loss in zero-connectivity environments.</div><div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">Hive</span><span class="proj-tag">Dio Interceptors</span><span class="proj-tag">Shorebird</span></div><a href="https://play.google.com/store/apps/details?id=ai.attentive.crew" target="_blank" class="proj-link">↗ Accelerate Crew</a></div></div>
-    <div class="proj-card sr sr-d2"><div class="proj-visual"><canvas id="pc3"></canvas><div class="proj-emoji">🧠</div></div><div class="proj-body"><div class="proj-name">AI Biometric Attendance</div><div class="proj-desc">On-device face detection + embedding matching via ML Kit. No server. Works offline. 300+ crew members.</div><div class="proj-tags"><span class="proj-tag">ML Kit</span><span class="proj-tag">Flutter</span><span class="proj-tag">On-device AI</span></div><a href="https://play.google.com/store/apps/details?id=ai.attentive.crew" target="_blank" class="proj-link">↗ Play Store</a></div></div>
-    <div class="proj-card sr sr-d3"><div class="proj-visual"><canvas id="pc4"></canvas><div class="proj-emoji">📊</div></div><div class="proj-body"><div class="proj-name">Personal Finance Management</div><div class="proj-desc">Account Aggregator integration, expense categorization, spending insights, goal tracking.</div><div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">BLoC</span><span class="proj-tag">Account Aggregator</span></div><a href="https://play.google.com/store/apps/details?id=com.salaryse.android" target="_blank" class="proj-link">↗ SalarySe</a></div></div>
-    <div class="proj-card sr sr-d4"><div class="proj-visual"><canvas id="pc5"></canvas><div class="proj-emoji">🎁</div></div><div class="proj-body"><div class="proj-name">Flexi Benefits &amp; Lending</div><div class="proj-desc">Earned wage access, LOC flows, native lending SDK integration across 2000+ active loans.</div><div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">MethodChannel</span><span class="proj-tag">Native SDK</span></div><a href="https://play.google.com/store/apps/details?id=com.salaryse.android" target="_blank" class="proj-link">↗ SalarySe</a></div></div>
-    <div class="proj-card sr sr-d5"><div class="proj-visual"><canvas id="pc6"></canvas><div class="proj-emoji">📍</div></div><div class="proj-body"><div class="proj-name">Real-Time GPS &amp; Geofencing</div><div class="proj-desc">Live crew tracking, location-validated check-ins, geofenced zones, battery-efficient background tracking.</div><div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">GPS</span><span class="proj-tag">Geofencing</span></div><a href="https://play.google.com/store/apps/details?id=ai.attentive.crew" target="_blank" class="proj-link">↗ Accelerate Crew</a></div></div>
-  </div>
-</div>
+    /* ══ CURSOR ══ */
+    const csrEl = document.getElementById('csr');
+    const dot = document.getElementById('csr-dot');
+    const trail = document.getElementById('csr-trail');
+    let mx = -100, my = -100, tx = -100, ty = -100;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    (function animCsr() {
+      tx += (mx - tx) * 0.14; ty += (my - ty) * 0.14;
+      csrEl.style.transform = `translate(${mx}px,${my}px)`;
+      trail.style.transform = `translate(${tx - mx}px,${ty - my}px) translate(-50%,-50%)`;
+      requestAnimationFrame(animCsr);
+    })();
 
-<div class="divider"></div>
+    /* ══ HERO TITLE CHAR SPLIT ══ */
+    (function () {
+      const el = document.getElementById('heroTitle');
+      const words = ['Kunwar', 'Sadanand'];
+      const delays = [0.5, 0.75];
+      el.innerHTML = words.map((w, wi) =>
+        `<span class="word">${[...w].map((c, ci) =>
+          `<span class="char" style="animation-delay:${delays[wi] + ci * 0.045}s">${c}</span>`
+        ).join('')}</span>${wi < words.length - 1 ? ' ' : ''}`
+      ).join('<br/>');
+    })();
 
-<!-- ════ HIGHLIGHTS ════ -->
-<div class="section" id="highlights">
-  <p class="s-eyebrow sr">Deep dives</p>
-  <h2 class="s-title sr sr-d1">Technical highlights</h2>
-  <p class="s-sub sr sr-d2">Engineering problems I've solved that most Flutter engineers haven't encountered.</p>
-  <div class="hl-grid">
-    <div class="hl-card sr"><div class="hl-num">01</div><div class="hl-title">Offline-First Sync Engine</div><div class="hl-desc">Built a <code>queued API replay</code> system in Hive. Mutations written locally first, replayed in-order with <code>idempotency keys</code> on reconnect.</div><span class="hl-badge" style="background:rgba(0,212,255,0.08);color:#00d4ff;border:1px solid rgba(0,212,255,0.2)">Zero data loss</span></div>
-    <div class="hl-card sr sr-d1"><div class="hl-num">02</div><div class="hl-title">Native SDK Bridging</div><div class="hl-desc">Wrapped Android/iOS lending SDKs using <code>MethodChannel</code> and <code>EventChannel</code>. Handles async callbacks, lifecycle events, and cross-platform error propagation for 2000+ loan flows.</div><span class="hl-badge" style="background:rgba(123,104,238,0.1);color:#a99ef7;border:1px solid rgba(123,104,238,0.25)">2000+ loans</span></div>
-    <div class="hl-card sr sr-d2"><div class="hl-num">03</div><div class="hl-title">Cold Start Optimization</div><div class="hl-desc">Cut startup 2.8s → 1.8s (35%) by profiling <code>main()</code> and deferring non-critical <code>GetIt</code> registrations post-frame. Only auth, DI, and nav bootstrap eagerly.</div><span class="hl-badge" style="background:rgba(0,232,122,0.08);color:#00e87a;border:1px solid rgba(0,232,122,0.22)">35% faster</span></div>
-    <div class="hl-card sr sr-d3"><div class="hl-num">04</div><div class="hl-title">Shorebird OTA + Feature Flags</div><div class="hl-desc">Dart-layer hot patches with Shorebird. Critical fintech bugs fixed and rolled out in minutes, not days — no Play Store review wait. Feature flagging for safe staged rollouts.</div><span class="hl-badge" style="background:rgba(255,179,71,0.08);color:#ffb347;border:1px solid rgba(255,179,71,0.22)">Minutes not days</span></div>
-    <div class="hl-card sr sr-d4"><div class="hl-num">05</div><div class="hl-title">On-Device ML Attendance</div><div class="hl-desc">Face detection + <code>embedding matching</code> with ML Kit entirely on-device. No server round-trip. <code>Secure storage</code> for facial embeddings. Works fully offline for 300+ crew.</div><span class="hl-badge" style="background:rgba(123,104,238,0.1);color:#a99ef7;border:1px solid rgba(123,104,238,0.25)">On-device AI</span></div>
-    <div class="hl-card sr sr-d5"><div class="hl-num">06</div><div class="hl-title">Fintech Security Stack</div><div class="hl-desc"><code>SSL pinning</code> against MITM, <code>root/jailbreak detection</code> with layered heuristics, biometric auth, and concurrency-safe <code>JWT refresh</code> with a single in-flight guard.</div><span class="hl-badge" style="background:rgba(0,232,122,0.08);color:#00e87a;border:1px solid rgba(0,232,122,0.22)">Production-grade</span></div>
-  </div>
-</div>
+    /* ══ MARQUEE DUPLICATE ══ */
+    (function () {
+      const t = document.getElementById('marqueeTrack');
+      t.innerHTML += t.innerHTML;
+    })();
 
-<div class="divider"></div>
+    /* ══ SCROLL PROGRESS ══ */
+    const prog = document.getElementById('scroll-progress');
+    const navEl = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      const s = window.scrollY;
+      const max = document.body.scrollHeight - window.innerHeight;
+      prog.style.width = (s / max * 100) + '%';
+      navEl.classList.toggle('scrolled', s > 60);
+    }, { passive: true });
 
-<!-- ════ EXPERTISE ════ -->
-<div class="section" id="expertise">
-  <p class="s-eyebrow sr">Engineering expertise</p>
-  <h2 class="s-title sr sr-d1">What I bring<br/>to the table</h2>
-  <p class="s-sub sr sr-d2">Five years of production challenges distilled into a clear engineering profile.</p>
-  <div class="exp-grid10">
-    <div class="skill-card sr"><span class="skill-icon">🏗️</span><div class="skill-name">Architecture</div><div class="skill-items">Clean Architecture · Feature-First · DI · SOLID</div></div>
-    <div class="skill-card sr sr-d1"><span class="skill-icon">📱</span><div class="skill-name">Flutter &amp; Dart</div><div class="skill-items">Platform Channels · Isolates · Deep Linking · Push</div></div>
-    <div class="skill-card sr sr-d2"><span class="skill-icon">🔄</span><div class="skill-name">State Management</div><div class="skill-items">BLoC / Cubit · GetIt · Stream Architecture</div></div>
-    <div class="skill-card sr sr-d3"><span class="skill-icon">⚡</span><div class="skill-name">Performance</div><div class="skill-items">Cold Start · 60/120fps · Memory · Asset Caching</div></div>
-    <div class="skill-card sr sr-d4"><span class="skill-icon">💰</span><div class="skill-name">Payments &amp; Fintech</div><div class="skill-items">UPI · BBPS · Juspay · Account Aggregator · KYC</div></div>
-    <div class="skill-card sr sr-d5"><span class="skill-icon">🔒</span><div class="skill-name">Security</div><div class="skill-items">SSL Pinning · Biometric · Root Detection · JWT</div></div>
-    <div class="skill-card sr"><span class="skill-icon">🔌</span><div class="skill-name">Native Integration</div><div class="skill-items">MethodChannel · EventChannel · Kotlin · Swift</div></div>
-    <div class="skill-card sr sr-d1"><span class="skill-icon">🚀</span><div class="skill-name">DevOps &amp; CI/CD</div><div class="skill-items">GitHub Actions · Shorebird OTA · Multi-Flavor · Maestro</div></div>
-    <div class="skill-card sr sr-d2"><span class="skill-icon">📡</span><div class="skill-name">Observability</div><div class="skill-items">Crashlytics · Sentry · Mixpanel · AppsFlyer · UXCam</div></div>
-    <div class="skill-card sr sr-d3"><span class="skill-icon">🤖</span><div class="skill-name">AI / GenAI</div><div class="skill-items">LLM Integration · Voice-to-Intent · On-device ML</div></div>
-  </div>
-  <div style="margin-top:52px">
-    <div class="tech-flex sr sr-d1">
-      <div class="tech-sec">Core</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#54c5f8"></div>Flutter</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#00b4d2"></div>Dart</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#3ddc84"></div>Android · Kotlin</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#fa7343"></div>iOS · Swift</div>
-      <div class="tech-sec">Architecture</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#7b68ee"></div>BLoC / Cubit</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#a99ef7"></div>GetIt DI</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#6c63ff"></div>Clean Architecture</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#22c55e"></div>Dio</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#06b6d4"></div>Hive</div>
-      <div class="tech-sec">Payments</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#0066cc"></div>Juspay HyperSDK</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#00a651"></div>UPI</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#e91e8c"></div>BBPS</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#ff9800"></div>Account Aggregator</div>
-      <div class="tech-sec">Observability &amp; DevOps</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#ffca28"></div>Firebase</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#f05a28"></div>Crashlytics</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#7856ff"></div>Mixpanel</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#24292e"></div>GitHub Actions</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#0070f3"></div>Shorebird OTA</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#ff4154"></div>Maestro</div>
-      <div class="tech-pill"><div class="tech-dot" style="background:#764abc"></div>Sentry</div>
-    </div>
-  </div>
-</div>
+    /* ══ SCROLL REVEAL ══ */
+    const srObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+    document.querySelectorAll('.sr').forEach(el => srObs.observe(el));
 
-<div class="divider"></div>
+    /* ══ COUNTERS ══ */
+    const cntObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target, target = +el.dataset.t, dur = 1400, s0 = performance.now();
+        (function tick(now) {
+          const p = Math.min((now - s0) / dur, 1);
+          el.textContent = Math.round(EASE(p) * target);
+          if (p < 1) requestAnimationFrame(tick);
+        })(s0);
+        cntObs.unobserve(el);
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.counter').forEach(el => cntObs.observe(el));
 
-<!-- ════ TESTIMONIALS ════ -->
-<div class="section" id="testimonials">
-  <p class="s-eyebrow sr">Recommendations</p>
-  <h2 class="s-title sr sr-d1">What colleagues say</h2>
-  <p class="s-sub sr sr-d2">Testimonials from people I've worked closely with. More coming soon.</p>
-  <div class="test-grid">
-    <div class="test-card sr"><div class="pending-badge">Pending</div><div class="test-q">"</div><div class="test-body">Kunwar bootstrapped our entire mobile architecture from scratch. The quality of the system he built is what allowed us to scale to 100K+ users without major rewrites.</div><div class="test-author"><div class="test-av">SK</div><div><div class="test-name">Colleague at SalarySe</div><div class="test-role">Engineering Leadership</div></div></div></div>
-    <div class="test-card sr sr-d2"><div class="pending-badge">Pending</div><div class="test-q">"</div><div class="test-body">The offline sync engine he built was a game changer. We went from data loss complaints weekly to zero incidents in production. Exceptional engineering.</div><div class="test-author"><div class="test-av">RA</div><div><div class="test-name">Colleague at Attentive AI</div><div class="test-role">Product &amp; Engineering</div></div></div></div>
-    <div class="test-card sr sr-d4"><div class="pending-badge">Pending</div><div class="test-q">"</div><div class="test-body">One of the most technically thorough mobile engineers I've worked with. He thinks about the entire system, performance, and edge cases most engineers miss.</div><div class="test-author"><div class="test-av">MS</div><div><div class="test-name">Colleague at Siply</div><div class="test-role">Engineering</div></div></div></div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- ════ CONTACT ════ -->
-<div class="section" id="contact">
-  <div class="contact-split">
-    <div class="sr">
-      <p class="s-eyebrow">Let's talk</p>
-      <h2 class="s-title" style="margin-bottom:18px">Open to the<br/>right opportunity</h2>
-      <p style="font-size:15px;color:var(--ink2);line-height:1.85;max-width:460px">Particularly interested in roles at companies doing serious mobile systems work — <strong style="color:var(--ink)">PhonePe, Razorpay, CRED, Groww, Zepto, Rippling</strong> or similarly ambitious teams building at scale.</p>
-      <p style="font-size:15px;color:var(--ink2);line-height:1.85;max-width:460px;margin-top:14px">If you're building something that requires production-grade Flutter engineering — let's connect.</p>
-    </div>
-    <div class="c-links sr sr-d2">
-      <a href="mailto:ikunwarsadanand@gmail.com" class="c-link"><div class="c-icon">✉️</div><div><div class="c-label">Email</div><div class="c-val">ikunwarsadanand@gmail.com</div></div><div class="c-arrow">→</div></a>
-      <a href="https://linkedin.com/in/ksadanand" target="_blank" class="c-link"><div class="c-icon">💼</div><div><div class="c-label">LinkedIn</div><div class="c-val">linkedin.com/in/ksadanand</div></div><div class="c-arrow">→</div></a>
-      <a href="https://github.com/ksadanand172" target="_blank" class="c-link"><div class="c-icon">⚡</div><div><div class="c-label">GitHub</div><div class="c-val">github.com/ksadanand172</div></div><div class="c-arrow">→</div></a>
-      <a href="tel:+919140662178" class="c-link"><div class="c-icon">📱</div><div><div class="c-label">Phone</div><div class="c-val">+91 91406 62178</div></div><div class="c-arrow">→</div></a>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-<footer>
-  <div class="footer-l">© 2025 Kunwar Sadanand — Senior Flutter Engineer</div>
-  <div class="footer-r">Gurugram, India · <em>Open to remote</em></div>
-</footer>
-
-<script>
-/* ══ EASE ══ */
-const EASE = t => 1 - Math.pow(1 - t, 3);
-
-/* ══ CURSOR ══ */
-const csrEl = document.getElementById('csr');
-const dot = document.getElementById('csr-dot');
-const trail = document.getElementById('csr-trail');
-let mx = -100, my = -100, tx = -100, ty = -100;
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-(function animCsr() {
-  tx += (mx - tx) * 0.14; ty += (my - ty) * 0.14;
-  csrEl.style.transform = `translate(${mx}px,${my}px)`;
-  trail.style.transform = `translate(${tx - mx}px,${ty - my}px) translate(-50%,-50%)`;
-  requestAnimationFrame(animCsr);
-})();
-
-/* ══ HERO TITLE CHAR SPLIT ══ */
-(function() {
-  const el = document.getElementById('heroTitle');
-  const words = ['Kunwar', 'Sadanand'];
-  const delays = [0.5, 0.75];
-  el.innerHTML = words.map((w, wi) =>
-    `<span class="word">${[...w].map((c, ci) =>
-      `<span class="char" style="animation-delay:${delays[wi] + ci * 0.045}s">${c}</span>`
-    ).join('')}</span>${wi < words.length - 1 ? ' ' : ''}`
-  ).join('<br/>');
-})();
-
-/* ══ MARQUEE DUPLICATE ══ */
-(function() {
-  const t = document.getElementById('marqueeTrack');
-  t.innerHTML += t.innerHTML;
-})();
-
-/* ══ SCROLL PROGRESS ══ */
-const prog = document.getElementById('scroll-progress');
-const navEl = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  const s = window.scrollY;
-  const max = document.body.scrollHeight - window.innerHeight;
-  prog.style.width = (s / max * 100) + '%';
-  navEl.classList.toggle('scrolled', s > 60);
-}, { passive: true });
-
-/* ══ SCROLL REVEAL ══ */
-const srObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
-}, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
-document.querySelectorAll('.sr').forEach(el => srObs.observe(el));
-
-/* ══ COUNTERS ══ */
-const cntObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    const el = e.target, target = +el.dataset.t, dur = 1400, s0 = performance.now();
-    (function tick(now) {
-      const p = Math.min((now - s0) / dur, 1);
-      el.textContent = Math.round(EASE(p) * target);
-      if (p < 1) requestAnimationFrame(tick);
-    })(s0);
-    cntObs.unobserve(el);
-  });
-}, { threshold: 0.3 });
-document.querySelectorAll('.counter').forEach(el => cntObs.observe(el));
-
-/* ══ VIDEO PARALLAX ON HERO ══ */
-const heroVid = document.getElementById('hero-video');
-const heroOverlay = document.getElementById('hero-overlay');
-window.addEventListener('scroll', () => {
-  const y = window.scrollY;
-  if (y < window.innerHeight) {
-    heroVid.style.transform = `scale(1.05) translateY(${y * 0.18}px)`;
-    heroOverlay.style.opacity = Math.min(1, 0.7 + y / window.innerHeight * 0.5);
-  }
-}, { passive: true });
-
-/* ══ PROJECT CARD MINI CANVASES ══ */
-(function() {
-  const cfgs = [
-    { id: 'pc1', color: [123, 104, 238], style: 'rings' },
-    { id: 'pc2', color: [0, 212, 255],   style: 'grid' },
-    { id: 'pc3', color: [162, 146, 247], style: 'neural' },
-    { id: 'pc4', color: [255, 179, 71],  style: 'bars' },
-    { id: 'pc5', color: [0, 232, 122],   style: 'particles' },
-    { id: 'pc6', color: [244, 114, 182], style: 'radar' },
-  ];
-  cfgs.forEach(({ id, color: [r, g, b], style }) => {
-    const cv = document.getElementById(id);
-    if (!cv) return;
-    cv.width = cv.parentElement.offsetWidth || 340;
-    cv.height = 196;
-    const ctx = cv.getContext('2d');
-    let t = 0;
-    const pts = style === 'particles'
-      ? Array.from({ length: 22 }, () => ({
-          x: Math.random() * cv.width, y: Math.random() * cv.height,
-          vx: (Math.random() - .5) * 0.45, vy: (Math.random() - .5) * 0.45
-        }))
-      : null;
-
-    function frame() {
-      ctx.clearRect(0, 0, cv.width, cv.height);
-      const cx = cv.width / 2, cy = cv.height / 2;
-      const c = (a) => `rgba(${r},${g},${b},${a})`;
-
-      if (style === 'rings') {
-        for (let i = 5; i >= 0; i--) {
-          const rad = 20 + i * 26 + Math.sin(t * 0.7 + i * 0.6) * 7;
-          ctx.beginPath();
-          ctx.arc(cx + Math.cos(t * 0.25 + i) * 12, cy + Math.sin(t * 0.3 + i) * 9, rad, 0, Math.PI * 2);
-          ctx.strokeStyle = c(0.05 + 0.04 * Math.sin(t * 0.4 + i));
-          ctx.lineWidth = 1.2; ctx.stroke();
-        }
-        const grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, 85);
-        grd.addColorStop(0, c(0.14)); grd.addColorStop(1, c(0));
-        ctx.fillStyle = grd; ctx.fillRect(0, 0, cv.width, cv.height);
+    /* ══ VIDEO PARALLAX ON HERO ══ */
+    const heroVid = document.getElementById('hero-video');
+    const heroOverlay = document.getElementById('hero-overlay');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y < window.innerHeight) {
+        heroVid.style.transform = `scale(1.05) translateY(${y * 0.18}px)`;
+        heroOverlay.style.opacity = Math.min(1, 0.7 + y / window.innerHeight * 0.5);
       }
-      else if (style === 'grid') {
-        const off = (t * 14) % 38;
-        ctx.strokeStyle = c(0.08); ctx.lineWidth = 0.6;
-        for (let x = -38; x < cv.width + 38; x += 38) { ctx.beginPath(); ctx.moveTo(x + off, 0); ctx.lineTo(x + off, cv.height); ctx.stroke(); }
-        for (let y = -38; y < cv.height + 38; y += 38) { ctx.beginPath(); ctx.moveTo(0, y + off); ctx.lineTo(cv.width, y + off); ctx.stroke(); }
-        const g2 = ctx.createLinearGradient(0, 0, cv.width, cv.height);
-        g2.addColorStop(0, c(0.06)); g2.addColorStop(.5, c(0.15)); g2.addColorStop(1, c(0.03));
-        ctx.fillStyle = g2; ctx.fillRect(0, 0, cv.width, cv.height);
-      }
-      else if (style === 'neural') {
-        const p5 = [
-          { x: cx - 85, y: cy - 28 }, { x: cx - 25, y: cy + 42 },
-          { x: cx + 42, y: cy - 48 }, { x: cx + 88, y: cy + 18 }, { x: cx, y: cy }
-        ].map((p, i) => ({
-          x: p.x + Math.sin(t * 0.7 + i * 1.3) * 5,
-          y: p.y + Math.cos(t * 0.5 + i * 0.9) * 5
-        }));
-        p5.forEach((p, i) => p5.forEach((q, j) => {
-          if (i >= j) return;
-          const d = Math.hypot(p.x - q.x, p.y - q.y);
-          if (d < 170) {
-            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
-            ctx.strokeStyle = c((1 - d / 170) * 0.14); ctx.lineWidth = 0.9; ctx.stroke();
+    }, { passive: true });
+
+    /* ══ PROJECT CARD MINI CANVASES ══ */
+    (function () {
+      const cfgs = [
+        { id: 'pc1', color: [123, 104, 238], style: 'rings' },
+        { id: 'pc2', color: [0, 212, 255], style: 'grid' },
+        { id: 'pc3', color: [162, 146, 247], style: 'neural' },
+        { id: 'pc4', color: [255, 179, 71], style: 'bars' },
+        { id: 'pc5', color: [0, 232, 122], style: 'particles' },
+        { id: 'pc6', color: [244, 114, 182], style: 'radar' },
+      ];
+      cfgs.forEach(({ id, color: [r, g, b], style }) => {
+        const cv = document.getElementById(id);
+        if (!cv) return;
+        cv.width = cv.parentElement.offsetWidth || 340;
+        cv.height = 196;
+        const ctx = cv.getContext('2d');
+        let t = 0;
+        const pts = style === 'particles'
+          ? Array.from({ length: 22 }, () => ({
+            x: Math.random() * cv.width, y: Math.random() * cv.height,
+            vx: (Math.random() - .5) * 0.45, vy: (Math.random() - .5) * 0.45
+          }))
+          : null;
+
+        function frame() {
+          ctx.clearRect(0, 0, cv.width, cv.height);
+          const cx = cv.width / 2, cy = cv.height / 2;
+          const c = (a) => `rgba(${r},${g},${b},${a})`;
+
+          if (style === 'rings') {
+            for (let i = 5; i >= 0; i--) {
+              const rad = 20 + i * 26 + Math.sin(t * 0.7 + i * 0.6) * 7;
+              ctx.beginPath();
+              ctx.arc(cx + Math.cos(t * 0.25 + i) * 12, cy + Math.sin(t * 0.3 + i) * 9, rad, 0, Math.PI * 2);
+              ctx.strokeStyle = c(0.05 + 0.04 * Math.sin(t * 0.4 + i));
+              ctx.lineWidth = 1.2; ctx.stroke();
+            }
+            const grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, 85);
+            grd.addColorStop(0, c(0.14)); grd.addColorStop(1, c(0));
+            ctx.fillStyle = grd; ctx.fillRect(0, 0, cv.width, cv.height);
           }
-        }));
-        p5.forEach(p => { ctx.beginPath(); ctx.arc(p.x, p.y, 3.5, 0, Math.PI * 2); ctx.fillStyle = c(0.55); ctx.fill(); });
-      }
-      else if (style === 'bars') {
-        for (let i = 0; i < 9; i++) {
-          const h = 35 + Math.sin(t * 1.1 + i * 0.85) * 32 + 28;
-          const x = cx - 9 * 13 + i * 26;
-          ctx.fillStyle = c(0.08 + 0.09 * Math.sin(t * 0.8 + i * 0.6));
-          ctx.fillRect(x, cy + 42 - h, 18, h);
+          else if (style === 'grid') {
+            const off = (t * 14) % 38;
+            ctx.strokeStyle = c(0.08); ctx.lineWidth = 0.6;
+            for (let x = -38; x < cv.width + 38; x += 38) { ctx.beginPath(); ctx.moveTo(x + off, 0); ctx.lineTo(x + off, cv.height); ctx.stroke(); }
+            for (let y = -38; y < cv.height + 38; y += 38) { ctx.beginPath(); ctx.moveTo(0, y + off); ctx.lineTo(cv.width, y + off); ctx.stroke(); }
+            const g2 = ctx.createLinearGradient(0, 0, cv.width, cv.height);
+            g2.addColorStop(0, c(0.06)); g2.addColorStop(.5, c(0.15)); g2.addColorStop(1, c(0.03));
+            ctx.fillStyle = g2; ctx.fillRect(0, 0, cv.width, cv.height);
+          }
+          else if (style === 'neural') {
+            const p5 = [
+              { x: cx - 85, y: cy - 28 }, { x: cx - 25, y: cy + 42 },
+              { x: cx + 42, y: cy - 48 }, { x: cx + 88, y: cy + 18 }, { x: cx, y: cy }
+            ].map((p, i) => ({
+              x: p.x + Math.sin(t * 0.7 + i * 1.3) * 5,
+              y: p.y + Math.cos(t * 0.5 + i * 0.9) * 5
+            }));
+            p5.forEach((p, i) => p5.forEach((q, j) => {
+              if (i >= j) return;
+              const d = Math.hypot(p.x - q.x, p.y - q.y);
+              if (d < 170) {
+                ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+                ctx.strokeStyle = c((1 - d / 170) * 0.14); ctx.lineWidth = 0.9; ctx.stroke();
+              }
+            }));
+            p5.forEach(p => { ctx.beginPath(); ctx.arc(p.x, p.y, 3.5, 0, Math.PI * 2); ctx.fillStyle = c(0.55); ctx.fill(); });
+          }
+          else if (style === 'bars') {
+            for (let i = 0; i < 9; i++) {
+              const h = 35 + Math.sin(t * 1.1 + i * 0.85) * 32 + 28;
+              const x = cx - 9 * 13 + i * 26;
+              ctx.fillStyle = c(0.08 + 0.09 * Math.sin(t * 0.8 + i * 0.6));
+              ctx.fillRect(x, cy + 42 - h, 18, h);
+            }
+          }
+          else if (style === 'particles') {
+            pts.forEach(p => {
+              p.x += p.vx; p.y += p.vy;
+              if (p.x < 0 || p.x > cv.width) p.vx *= -1;
+              if (p.y < 0 || p.y > cv.height) p.vy *= -1;
+              ctx.beginPath(); ctx.arc(p.x, p.y, 2.2, 0, Math.PI * 2);
+              ctx.fillStyle = c(0.45); ctx.fill();
+            });
+            pts.forEach((p, i) => pts.forEach((q, j) => {
+              if (i >= j) return;
+              const d = Math.hypot(p.x - q.x, p.y - q.y);
+              if (d < 82) { ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.strokeStyle = c((1 - d / 82) * 0.16); ctx.lineWidth = 0.6; ctx.stroke(); }
+            }));
+          }
+          else if (style === 'radar') {
+            [28, 56, 84, 112].forEach(rad => { ctx.beginPath(); ctx.arc(cx, cy, rad, 0, Math.PI * 2); ctx.strokeStyle = c(0.07); ctx.lineWidth = 0.8; ctx.stroke(); });
+            const sw = (t * 0.9) % (Math.PI * 2);
+            ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, 112, sw - 0.9, sw); ctx.closePath();
+            ctx.fillStyle = c(0.1); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(sw) * 112, cy + Math.sin(sw) * 112);
+            ctx.strokeStyle = c(0.55); ctx.lineWidth = 1.5; ctx.stroke();
+            const bx = cx + Math.cos(sw - 0.35) * 74, by = cy + Math.sin(sw - 0.35) * 74;
+            ctx.beginPath(); ctx.arc(bx, by, 3.5, 0, Math.PI * 2); ctx.fillStyle = c(0.85); ctx.fill();
+          }
+          t += 0.016;
+          requestAnimationFrame(frame);
         }
-      }
-      else if (style === 'particles') {
-        pts.forEach(p => {
-          p.x += p.vx; p.y += p.vy;
-          if (p.x < 0 || p.x > cv.width) p.vx *= -1;
-          if (p.y < 0 || p.y > cv.height) p.vy *= -1;
-          ctx.beginPath(); ctx.arc(p.x, p.y, 2.2, 0, Math.PI * 2);
-          ctx.fillStyle = c(0.45); ctx.fill();
-        });
-        pts.forEach((p, i) => pts.forEach((q, j) => {
-          if (i >= j) return;
-          const d = Math.hypot(p.x - q.x, p.y - q.y);
-          if (d < 82) { ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.strokeStyle = c((1 - d / 82) * 0.16); ctx.lineWidth = 0.6; ctx.stroke(); }
-        }));
-      }
-      else if (style === 'radar') {
-        [28, 56, 84, 112].forEach(rad => { ctx.beginPath(); ctx.arc(cx, cy, rad, 0, Math.PI * 2); ctx.strokeStyle = c(0.07); ctx.lineWidth = 0.8; ctx.stroke(); });
-        const sw = (t * 0.9) % (Math.PI * 2);
-        ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, 112, sw - 0.9, sw); ctx.closePath();
-        ctx.fillStyle = c(0.1); ctx.fill();
-        ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(sw) * 112, cy + Math.sin(sw) * 112);
-        ctx.strokeStyle = c(0.55); ctx.lineWidth = 1.5; ctx.stroke();
-        const bx = cx + Math.cos(sw - 0.35) * 74, by = cy + Math.sin(sw - 0.35) * 74;
-        ctx.beginPath(); ctx.arc(bx, by, 3.5, 0, Math.PI * 2); ctx.fillStyle = c(0.85); ctx.fill();
-      }
-      t += 0.016;
-      requestAnimationFrame(frame);
-    }
-    frame();
-  });
-})();
+        frame();
+      });
+    })();
 
-/* ══ 3D TILT ══ */
-document.querySelectorAll('.exp-card, .proj-card, .hl-card, .test-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
-    card.style.transform = `perspective(700px) rotateY(${x * 7}deg) rotateX(${-y * 7}deg) translateZ(6px)`;
-  });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-  });
-});
+    /* ══ 3D TILT ══ */
+    document.querySelectorAll('.exp-card, .proj-card, .hl-card, .test-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `perspective(700px) rotateY(${x * 7}deg) rotateX(${-y * 7}deg) translateZ(6px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
 
-/* ══ SKILL CARD GLOW ══ */
-document.querySelectorAll('.skill-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
-    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
-  });
-});
+    /* ══ SKILL CARD GLOW ══ */
+    document.querySelectorAll('.skill-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+        card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+      });
+    });
 
-/* ══ NAV SECTION HIGHLIGHT ══ */
-const navAs = document.querySelectorAll('.nav-links a');
-new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      navAs.forEach(a => a.style.color = '');
-      const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
-      if (a) a.style.color = 'var(--ink)';
-    }
-  });
-}, { threshold: 0.35 }).observe(document.getElementById('about'));
-['about','experience','projects','highlights','expertise','contact'].forEach(id => {
-  const el = document.getElementById(id);
-  if (!el) return;
-  new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) {
-      navAs.forEach(a => a.style.color = '');
-      const a = document.querySelector(`.nav-links a[href="#${id}"]`);
-      if (a) a.style.color = 'var(--ink)';
-    }
-  }, { threshold: 0.3 }).observe(el);
-});
-</script>
+    /* ══ NAV SECTION HIGHLIGHT ══ */
+    const navAs = document.querySelectorAll('.nav-links a');
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navAs.forEach(a => a.style.color = '');
+          const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+          if (a) a.style.color = 'var(--ink)';
+        }
+      });
+    }, { threshold: 0.35 }).observe(document.getElementById('about'));
+    ['about', 'experience', 'projects', 'highlights', 'expertise', 'contact'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          navAs.forEach(a => a.style.color = '');
+          const a = document.querySelector(`.nav-links a[href="#${id}"]`);
+          if (a) a.style.color = 'var(--ink)';
+        }
+      }, { threshold: 0.3 }).observe(el);
+    });
+  </script>
 </body>
+
 </html>
