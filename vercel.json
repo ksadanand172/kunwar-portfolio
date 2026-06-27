@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "public": true,
   "routes": [
     {
       "src": "/hero.mp4",
@@ -7,16 +8,14 @@
         "Cache-Control": "public, max-age=31536000, immutable",
         "Accept-Ranges": "bytes",
         "Content-Type": "video/mp4"
-      },
-      "dest": "/public/hero.mp4"
+      }
     },
     {
-      "src": "/favicon.png",
-      "dest": "/public/favicon.png"
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
-      "dest": "/public/index.html"
+      "dest": "/index.html"
     }
   ]
 }
