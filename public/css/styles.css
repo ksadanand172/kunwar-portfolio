@@ -664,6 +664,30 @@ body:has(button:hover) #csr-trail {
   color: var(--ink)
 }
 
+.cp-co a {
+  color: inherit;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s ease;
+}
+
+.cp-co a:hover {
+  color: var(--green);
+}
+
+.cp-link-icon {
+  font-size: 14px;
+  opacity: 0.45;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.cp-co a:hover .cp-link-icon {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
 .cp-period {
   font-size: 11px;
   color: var(--ink3);
