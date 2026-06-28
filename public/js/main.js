@@ -12,7 +12,7 @@ const trail = document.getElementById('csr-trail');
 let mx = -100, my = -100, tx = -100, ty = -100;
 document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
 (function animCsr() {
-  tx += (mx - tx) * 0.14; ty += (my - ty) * 0.14;
+  tx += (mx - tx) * 0.35; ty += (my - ty) * 0.35;
   csrEl.style.transform = `translate(${mx}px,${my}px)`;
   trail.style.transform = `translate(${tx - mx}px,${ty - my}px) translate(-50%,-50%)`;
   requestAnimationFrame(animCsr);
